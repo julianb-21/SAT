@@ -21,13 +21,13 @@ function ScrollArrow({ onClick }: { onClick: () => void }) {
 export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
   return (
     <section
-      className="min-h-screen flex flex-col items-center justify-center px-4 py-16"
+      className="flex flex-col items-center justify-start px-4 pt-8 pb-10 md:min-h-screen md:justify-center md:py-16"
       style={{ backgroundColor: '#EEF2F8' }}
     >
       {/* Pill label */}
-      <div className="mb-5">
+      <div className="mb-4 md:mb-5">
         <span
-          className="inline-block rounded-full px-6 py-2 text-sm font-condensed font-semibold tracking-widest uppercase"
+          className="inline-block rounded-full px-5 py-2 text-xs md:text-sm font-condensed font-semibold tracking-widest uppercase"
           style={{ backgroundColor: '#D9E4F5', color: '#1E4FA0', letterSpacing: '0.08em' }}
         >
           ATTENTION DC, MARYLAND, VIRGINIA PARENTS
@@ -36,10 +36,10 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
 
       {/* White card */}
       <div
-        className="w-full max-w-4xl bg-white rounded-2xl px-8 pt-6 pb-6 text-center mb-8"
+        className="w-full max-w-4xl bg-white rounded-2xl px-5 pt-5 pb-5 md:px-8 md:pt-6 md:pb-6 text-center mb-6 md:mb-8"
         style={{ boxShadow: '0 12px 52px 0 rgba(30,79,160,0.16), 0 4px 12px 0 rgba(30,79,160,0.10)' }}
       >
-        <h1 className="font-condensed font-black uppercase leading-tight tracking-tight text-5xl md:text-6xl lg:text-[5.5rem]">
+        <h1 className="font-condensed font-black uppercase leading-tight tracking-tight text-4xl md:text-6xl lg:text-[5.5rem]">
           <span style={{ color: '#1A2A4A' }}>WE AVERAGE A </span>
           <span style={{ color: '#F26522' }}>220-POINT</span>
           <br />
@@ -48,11 +48,11 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
       </div>
 
       {/* Sub-copy */}
-      <p className="text-center text-slate-600 text-base md:text-lg font-body leading-relaxed max-w-2xl mb-4">
+      <p className="text-center text-slate-600 text-base md:text-lg font-body leading-relaxed max-w-2xl mb-3 md:mb-4 px-2">
         Fill out the form below to claim a <strong style={{ color: '#1E4FA0' }}>Free, 30-Minute SAT Strategy Call</strong> For Your Kid:
       </p>
 
-      <p className="text-center text-slate-500 text-base font-medium mb-12">
+      <p className="text-center text-slate-500 text-base font-medium mb-8 md:mb-12">
         (Only <span style={{ color: '#F26522' }} className="font-bold">7 spots</span> left)
       </p>
 

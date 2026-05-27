@@ -83,7 +83,7 @@ export default function FormSection({ sectionRef }: FormSectionProps) {
   return (
     <section
       ref={sectionRef}
-      className="flex items-center justify-center px-4 py-10 font-body"
+      className="flex items-center justify-center px-3 pt-12 pb-10 md:px-4 md:py-10 font-body"
       style={{ background: 'linear-gradient(160deg, #C8D8EF 0%, #AABFE6 100%)' }}
     >
       {submitted ? (

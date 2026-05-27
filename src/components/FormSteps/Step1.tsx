@@ -10,20 +10,20 @@ interface Step1Props {
 
 export default function Step1({ formData, isActive, onSelect, onNext }: Step1Props) {
   return (
-    <div className="flex items-start gap-4 mb-6">
+    <div className="flex items-start gap-3 md:gap-4 mb-6">
       <div className="flex items-center gap-1 font-semibold text-sm pt-1 shrink-0" style={{ color: '#F26522' }}>
         <span>1</span>
         <ArrowRight className="w-4 h-4" />
       </div>
       <div className="flex-1">
-        <p className="font-semibold text-base mb-4" style={{ color: '#1A2A4A' }}>
-          Are you the parent of a student looking to improve their SAT score?
+        <p className="font-semibold text-lg md:text-base mb-4 leading-snug" style={{ color: '#1A2A4A' }}>
+          Are you the parent of a student looking to score 1500+ on the SAT and get a full ride scholarship?
           <span className="text-red-500 ml-1">*</span>
         </p>
         <div className="flex flex-col gap-3">
           <button
             onClick={() => onSelect(true)}
-            className="flex items-center gap-3 border rounded-md px-4 py-3 text-left text-sm font-medium transition-all"
+            className="flex items-center gap-3 border rounded-md px-4 py-3.5 text-left text-base md:text-sm font-medium transition-all"
             style={formData.isParent === true
               ? { borderColor: '#1E4FA0', backgroundColor: '#EEF2F8', color: '#1A2A4A' }
               : { borderColor: '#cbd5e1', backgroundColor: 'white', color: '#475569' }}
@@ -36,7 +36,7 @@ export default function Step1({ formData, isActive, onSelect, onNext }: Step1Pro
           </button>
           <button
             onClick={() => onSelect(false)}
-            className="flex items-center gap-3 border rounded-md px-4 py-3 text-left text-sm font-medium transition-all"
+            className="flex items-center gap-3 border rounded-md px-4 py-3.5 text-left text-base md:text-sm font-medium transition-all"
             style={formData.isParent === false
               ? { borderColor: '#ef4444', backgroundColor: '#fef2f2', color: '#b91c1c' }
               : { borderColor: '#cbd5e1', backgroundColor: 'white', color: '#475569' }}
