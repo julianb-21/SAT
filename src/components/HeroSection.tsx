@@ -43,7 +43,9 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
           <span style={{ color: '#1A2A4A' }}>WE AVERAGE A </span>
           <span style={{ color: '#F26522' }}>220-POINT</span>
           <br />
-          <span style={{ color: '#1A2A4A' }}>IMPROVEMENT ON THE SAT!</span>
+          <span style={{ color: '#1A2A4A' }}>IMPROVEMENT ON THE</span>
+          <br />
+          <span style={{ color: '#1A2A4A' }}>SAT!</span>
         </h1>
       </div>
 
