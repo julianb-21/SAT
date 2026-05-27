@@ -49,7 +49,9 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
 
       {/* Sub-copy */}
       <p className="text-center text-slate-600 text-base md:text-lg font-body leading-relaxed max-w-2xl mb-3 md:mb-4 px-2">
-        Fill out the form below to claim a <strong style={{ color: '#1E4FA0' }}>Free, 30-Minute SAT Strategy Call</strong> For Your Kid:
+        Fill out the form below to claim a{' '}
+        <span className="inline md:hidden"><strong style={{ color: '#1E4FA0' }}>Free, 30-Minute<br />SAT Strategy Call</strong> For Your Kid:</span>
+        <span className="hidden md:inline"><strong style={{ color: '#1E4FA0' }}>Free, 30-Minute SAT Strategy Call</strong> For Your Kid:</span>
       </p>
 
       <p className="text-center text-slate-500 text-base font-medium mb-8 md:mb-12">
