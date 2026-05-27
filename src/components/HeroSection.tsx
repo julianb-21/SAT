@@ -39,7 +39,7 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
         className="w-full max-w-4xl bg-white rounded-2xl px-5 pt-5 pb-5 md:px-8 md:pt-6 md:pb-6 text-center mb-6 md:mb-8"
         style={{ boxShadow: '0 12px 52px 0 rgba(30,79,160,0.16), 0 4px 12px 0 rgba(30,79,160,0.10)' }}
       >
-        <h1 className="font-condensed font-black uppercase leading-tight tracking-tight text-3xl md:text-6xl lg:text-[5.5rem]">
+        <h1 className="font-condensed font-black uppercase leading-tight tracking-tight text-[2rem] md:text-6xl lg:text-[5.5rem]">
           <span style={{ color: '#1A2A4A' }}>WE AVERAGE A </span>
           <span style={{ color: '#F26522' }}>220-POINT</span>
           <br />
