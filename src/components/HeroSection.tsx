@@ -46,7 +46,7 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
           <span style={{ color: '#F26522' }}>220-POINT</span>
           <br />
           {/* Mobile: SAT SCORE IMPROVEMENT!, Desktop: IMPROVEMENT ON THE SAT! */}
-          <span className="block md:hidden" style={{ color: '#1A2A4A' }}>SAT SCORE INCREASE!</span>
+          <span className="block md:hidden" style={{ color: '#1A2A4A' }}>SAT SCORE IMPROVEMENT!</span>
           <span className="hidden md:block" style={{ color: '#1A2A4A' }}>IMPROVEMENT ON THE SAT!</span>
         </h1>
       </div>
