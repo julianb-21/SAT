@@ -7,7 +7,7 @@ const PHOTOS = [
   { src: '/files_6028413-2026-05-27T16-34-05-929Z-unnamed.jpg', alt: 'Family 6' },
   { src: '/dfsdgs.jpg', alt: 'Family 7' },
   { src: '/unnamed.jpg', alt: 'Family 8' },
-  { src: '/unnamedddd.jpg', alt: 'Family 9' },
+  { src: '/JOCELYM.jpg', alt: 'Family 9' },
 ];
 
 export default function TrustSection() {
