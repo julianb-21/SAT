@@ -1,15 +1,15 @@
 const CARDS = [
   {
-    emoji: '🎯',
-    title: 'Personalized Score Breakdown',
-    body: 'We identify exactly where your kid is losing points, section by section, concept by concept, so nothing is left to guesswork going into their next exam.',
-    tag: 'YOUR ROADMAP',
+    emoji: '🎓',
+    title: 'Free SAT Mini Course',
+    body: 'A concise, structured introduction to the SAT that shows your student exactly how the test is designed, which sections matter most, and where points are most often lost. This mini course helps students stop guessing, focus their prep, and approach the SAT with clarity instead of overwhelm.',
+    tag: 'INSTANT ACCESS',
   },
   {
-    emoji: '📅',
-    title: 'A Custom Testing Timeline',
-    body: 'We map out exactly when your kid should test based on their current score, target schools, and schedule so they are never scrambling at the last minute.',
-    tag: 'YOUR GAME PLAN',
+    emoji: '🏆',
+    title: 'Scholarship and Merit Score Targets',
+    body: 'A strong SAT score is one of the few things your student can control quickly. We align the program with your student\'s target schools and score thresholds so every session moves them closer to merit-based aid and competitive admissions outcomes.',
+    tag: 'BUILD THE PLAN',
   },
   {
     emoji: '🧠',
