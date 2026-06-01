@@ -36,13 +36,11 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
 
       {/* White card */}
       <div
-        className="w-full max-w-4xl bg-white rounded-2xl px-5 pt-4 pb-4 md:px-8 md:pt-5 md:pb-5 text-center mb-4 md:mb-5"
+        className="w-full max-w-4xl bg-white rounded-2xl px-5 pt-5 pb-5 md:px-8 md:pt-5 md:pb-5 text-center mb-4 md:mb-5"
         style={{ boxShadow: '0 12px 52px 0 rgba(30,79,160,0.16), 0 4px 12px 0 rgba(30,79,160,0.10)' }}
       >
-        <h1 className="font-condensed font-black uppercase leading-tight tracking-tight text-3xl md:text-5xl lg:text-[4.5rem]">
-          <span style={{ color: '#1A2A4A' }}>WE AVERAGE A</span>
-          <br className="block md:hidden" />
-          <span className="hidden md:inline" style={{ color: '#1A2A4A' }}> </span>
+        <h1 className="font-condensed font-black uppercase leading-tight tracking-tight text-[2rem] md:text-5xl lg:text-[4.5rem]">
+          <span style={{ color: '#1A2A4A' }}>WE AVERAGE A </span>
           <span style={{ color: '#F26522' }}>220-POINT</span>
           <br />
           <span className="block md:hidden" style={{ color: '#1A2A4A' }}>SAT SCORE IMPROVEMENT!</span>
