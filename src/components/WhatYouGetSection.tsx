@@ -31,7 +31,7 @@ export default function WhatYouGetSection({ onScrollToForm }: Props) {
           What Your Student Will Get
         </h2>
         <p className="text-center text-sm uppercase tracking-widest font-semibold mb-12" style={{ color: '#1E4FA0' }}>
-          On Your Free Strategy Call
+          With Langley Prep
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
