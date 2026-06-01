@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from 'react';
+
 const STAGGER_MS = 0;
 
 const COLLEGES_LEFT = [
@@ -34,6 +36,50 @@ const BULLETS = [
   'Confirm their target score, timeline, and the right session cadence',
   'Build their personalized plan so there are no surprises on test day.',
 ];
+
+const LOGOS = [
+  { src: '/harvard-logo-transparent.png', alt: 'Harvard University' },
+  { src: '/Princeton-Emblem.png', alt: 'Princeton University' },
+  { src: '/file.png', alt: 'Stanford University' },
+  { src: '/UPenn+Logo+1920x960.webp', alt: 'University of Pennsylvania' },
+  { src: '/OIP.webp', alt: 'Columbia University' },
+];
+
+function LogoCarousel() {
+  const [running, setRunning] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setRunning(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const doubled = [...LOGOS, ...LOGOS];
+
+  return (
+    <div ref={ref} className="overflow-hidden py-8" style={{ backgroundColor: '#F7F9FC' }}>
+      <div
+        className={`flex items-center gap-16 w-max ${running ? 'animate-logo-scroll' : 'animate-logo-scroll animate-logo-scroll-paused'}`}
+      >
+        {doubled.map((logo, i) => (
+          <div key={i} className="flex items-center justify-center flex-shrink-0 h-16 px-4">
+            <img
+              src={logo.src}
+              alt={logo.alt}
+              className="max-h-14 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+              style={{ maxWidth: '140px' }}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 
 interface Props {
   onScrollToForm: () => void;
@@ -120,6 +166,8 @@ export default function GameplanSection({ onScrollToForm }: Props) {
           </div>
         </div>
       </section>
+
+      <LogoCarousel />
 
       {/* Your Student Does the Work */}
       <section className="py-12 px-4 bg-white">

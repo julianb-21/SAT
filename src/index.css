@@ -20,6 +20,19 @@ input:focus {
     animation: bounce-slow 1.6s ease-in-out infinite;
   }
 
+  @keyframes logo-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-logo-scroll {
+    animation: logo-scroll 18s linear infinite;
+  }
+
+  .animate-logo-scroll-paused {
+    animation-play-state: paused;
+  }
+
   @keyframes check-draw {
     0%   { stroke-dashoffset: 20; opacity: 1; }
     50%  { stroke-dashoffset: 0;  opacity: 1; }
