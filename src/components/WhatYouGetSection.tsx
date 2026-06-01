@@ -10,7 +10,7 @@ const CARDS = [
   {
     emoji: '🏆',
     title: 'Scholarship and Merit Score Targets',
-    body: "A strong SAT score is one of the few things your student can control quickly. We align the program with your student's target schools and score thresholds so every session moves them closer to merit-based aid and competitive admissions outcomes.",
+    body: "A strong SAT score is one of the few things your student can control. We align the program with your student's target schools and score thresholds so every session moves them closer to merit-based aid and competitive admissions outcomes.",
     tag: 'BUILD THE PLAN',
   },
   {
