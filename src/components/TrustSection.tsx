@@ -14,38 +14,34 @@ export default function TrustSection() {
   return (
     <section className="py-10 px-4" style={{ backgroundColor: '#EEF2F8' }}>
       <div className="max-w-4xl mx-auto text-center">
-        {/* Desktop: static text | Mobile: infinite scrolling marquee */}
-        <p className="hidden md:block text-sm font-black tracking-widest uppercase mb-6" style={{ color: '#1E4FA0' }}>
+        <p className="text-sm font-black tracking-widest uppercase mb-6" style={{ color: '#1E4FA0' }}>
           500+ DC, Maryland, and Virginia Families Served!
         </p>
-        <div className="md:hidden overflow-hidden mb-6">
-          <div className="flex whitespace-nowrap animate-marquee">
-            {[...Array(6)].map((_, i) => (
-              <span
-                key={i}
-                className="text-sm font-black tracking-widest uppercase shrink-0 px-6"
-                style={{ color: '#1E4FA0' }}
-              >
-                500+ DC, Maryland, and Virginia Families Served!
-              </span>
-            ))}
-          </div>
-        </div>
 
-        <div className="flex items-center justify-center gap-3 flex-wrap mb-6">
+        {/* Desktop: static wrapped row | Mobile: infinite scrolling carousel */}
+        <div className="hidden md:flex items-center justify-center gap-3 flex-wrap mb-6">
           {PHOTOS.map((photo, i) => (
             <div
               key={i}
               className="w-16 h-16 rounded-full overflow-hidden shadow-md shrink-0"
               style={{ border: '3px solid white' }}
             >
-              <img
-                src={photo.src}
-                alt={photo.alt}
-                className="w-full h-full object-cover"
-              />
+              <img src={photo.src} alt={photo.alt} className="w-full h-full object-cover" />
             </div>
           ))}
+        </div>
+        <div className="md:hidden overflow-hidden mb-6">
+          <div className="flex animate-marquee">
+            {[...PHOTOS, ...PHOTOS].map((photo, i) => (
+              <div
+                key={i}
+                className="w-16 h-16 rounded-full overflow-hidden shadow-md shrink-0 mx-2"
+                style={{ border: '3px solid white' }}
+              >
+                <img src={photo.src} alt={photo.alt} className="w-full h-full object-cover" />
+              </div>
+            ))}
+          </div>
         </div>
 
         <p className="text-sm leading-relaxed max-w-2xl mx-auto" style={{ color: '#3A4F6B' }}>
