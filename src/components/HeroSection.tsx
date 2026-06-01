@@ -28,9 +28,9 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
       <div className="mb-4 md:mb-5">
         <span
           className="inline-block rounded-full px-5 py-2 text-xs md:text-sm font-condensed font-semibold tracking-widest uppercase"
-          style={{ backgroundColor: '#D9E4F5', color: '#1E4FA0', letterSpacing: '0.08em' }}
+          style={{ backgroundColor: '#FDEBD8', color: '#C24E0A', letterSpacing: '0.08em' }}
         >
-          ATTENTION DC, MARYLAND, VIRGINIA PARENTS
+          ATTENTION PARENTS IN DC, MARYLAND, VIRGINIA:
         </span>
       </div>
 
