@@ -43,6 +43,10 @@ const LOGOS = [
   { src: '/file.png', alt: 'Stanford University' },
   { src: '/UPenn+Logo+1920x960.webp', alt: 'University of Pennsylvania' },
   { src: '/OIP.webp', alt: 'Columbia University' },
+  { src: '/546eb0af9ad80aa8323a070e85e2dfba.jpg', alt: 'Colby College' },
+  { src: '/university-of-oxford9718.jpg', alt: 'University of Oxford' },
+  { src: '/OIP copy.webp', alt: 'University of Chicago' },
+  { src: '/Vanderbilt_University_seal-1024x1024.png', alt: 'Vanderbilt University' },
 ];
 
 function LogoCarousel() {
@@ -66,12 +70,11 @@ function LogoCarousel() {
         className={`flex items-center gap-12 w-max ${running ? 'animate-logo-scroll' : 'animate-logo-scroll animate-logo-scroll-paused'}`}
       >
         {doubled.map((logo, i) => (
-          <div key={i} className="flex items-center justify-center flex-shrink-0 h-12 px-2">
+          <div key={i} className="flex items-center justify-center flex-shrink-0 px-2">
             <img
               src={logo.src}
               alt={logo.alt}
-              className="max-h-10 w-auto object-contain"
-              style={{ maxWidth: '120px' }}
+              className="h-14 w-auto object-contain"
             />
           </div>
         ))}
