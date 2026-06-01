@@ -12,7 +12,7 @@ export default function Step5({ formData, isActive, onSelect, onNext }: Step5Pro
   return (
     <div className="flex items-start gap-4 mb-6">
       <div className="flex items-center gap-1 font-semibold text-sm pt-1 shrink-0" style={{ color: '#F26522' }}>
-        <span>5</span>
+        <span>4</span>
         <ArrowRight className="w-4 h-4" />
       </div>
       <div className="flex-1">

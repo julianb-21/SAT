@@ -1,7 +1,6 @@
-export type Step = 1 | 2 | 3 | 4 | 5 | 6;
+export type Step = 1 | 2 | 3 | 4 | 5;
 
 export interface FormData {
-  isParent: boolean | null;
   parentName: string;
   studentName: string;
   email: string;

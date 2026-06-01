@@ -14,7 +14,7 @@ export default function Step6({ formData, submitting, onSelect, onSubmit }: Step
   return (
     <div className="flex items-start gap-4 mb-6">
       <div className="flex items-center gap-1 font-semibold text-sm pt-1 shrink-0" style={{ color: '#F26522' }}>
-        <span>6</span>
+        <span>5</span>
         <ArrowRight className="w-4 h-4" />
       </div>
       <div className="flex-1">
