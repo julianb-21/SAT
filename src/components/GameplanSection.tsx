@@ -47,6 +47,10 @@ const LOGOS = [
   { src: '/university-of-oxford9718.jpg', alt: 'University of Oxford' },
   { src: '/OIP copy.webp', alt: 'University of Chicago' },
   { src: '/Vanderbilt_University_seal-1024x1024.png', alt: 'Vanderbilt University' },
+  { src: '/OIP copy copy.webp', alt: 'Washington University in St. Louis' },
+  { src: '/jo6476ce3f-johns-hopkins-university-logo-color-brand-guidelines.png', alt: 'Johns Hopkins University' },
+  { src: '/carnegie-mellon-university-northwestern-university-college-academic-degree-seal-thumbnail.jpg', alt: 'Northwestern University' },
+  { src: '/university-of-cambridge.png', alt: 'University of Cambridge' },
 ];
 
 function LogoCarousel() {

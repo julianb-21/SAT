@@ -26,7 +26,7 @@ input:focus {
   }
 
   .animate-logo-scroll {
-    animation: logo-scroll 18s linear infinite;
+    animation: logo-scroll 28s linear infinite;
   }
 
   .animate-logo-scroll-paused {
