@@ -1,32 +1,34 @@
-import { ArrowRight, Check } from 'lucide-react';
-import { FormData, SCORE_OPTIONS } from '../../types';
+import { ArrowRight } from 'lucide-react';
+import { FormData } from '../../types';
 
-interface Step5Props {
+const CALL_TIME_OPTIONS = ['Morning', 'Afternoon', 'Evening'];
+
+interface Step6Props {
   formData: FormData;
-  isActive: boolean;
-  onSelect: (score: string) => void;
-  onNext: () => void;
+  submitting: boolean;
+  onSelect: (callTime: string) => void;
+  onSubmit: () => void;
 }
 
-export default function Step5({ formData, isActive, onSelect, onNext }: Step5Props) {
+export default function Step6({ formData, submitting, onSelect, onSubmit }: Step6Props) {
   return (
     <div className="flex items-start gap-4 mb-6">
       <div className="flex items-center gap-1 font-semibold text-sm pt-1 shrink-0" style={{ color: '#F26522' }}>
-        <span>5</span>
+        <span>6</span>
         <ArrowRight className="w-4 h-4" />
       </div>
       <div className="flex-1">
         <p className="font-semibold text-base mb-4" style={{ color: '#1A2A4A' }}>
-          What is your student's current SAT score (or closest estimate)?
+          What time would you like to be called?
           <span className="text-red-500 ml-1">*</span>
         </p>
         <div className="flex flex-col gap-2">
-          {SCORE_OPTIONS.map((score, i) => (
+          {CALL_TIME_OPTIONS.map((option, i) => (
             <button
-              key={score}
-              onClick={() => onSelect(score)}
+              key={option}
+              onClick={() => onSelect(option)}
               className="flex items-center gap-3 border rounded-md px-4 py-3 text-left text-sm font-medium transition-all"
-              style={formData.currentScore === score
+              style={formData.callTime === option
                 ? { borderColor: '#1E4FA0', backgroundColor: '#EEF2F8', color: '#1A2A4A' }
                 : { borderColor: '#cbd5e1', backgroundColor: 'white', color: '#475569' }}
             >
@@ -34,18 +36,19 @@ export default function Step5({ formData, isActive, onSelect, onNext }: Step5Pro
                 style={{ borderColor: '#cbd5e1', backgroundColor: '#f8fafc', color: '#64748b' }}>
                 {i + 1}
               </span>
-              {score}
+              {option}
             </button>
           ))}
         </div>
 
-        {isActive && formData.currentScore && (
+        {formData.callTime && (
           <button
-            onClick={onNext}
-            className="mt-5 px-6 py-2.5 text-white font-bold rounded-md flex items-center gap-2 text-sm transition-all hover:opacity-90 active:scale-95"
-            style={{ backgroundColor: '#1E4FA0' }}
+            onClick={onSubmit}
+            disabled={submitting}
+            className="mt-6 w-full py-4 disabled:opacity-60 disabled:cursor-not-allowed text-white font-black text-lg rounded-xl shadow-lg transition-all hover:opacity-90 hover:shadow-xl active:scale-95 tracking-wide"
+            style={{ backgroundColor: '#F26522' }}
           >
-            OK <Check className="w-4 h-4" />
+            {submitting ? 'Submitting...' : 'Claim My Free Strategy Call →'}
           </button>
         )}
       </div>

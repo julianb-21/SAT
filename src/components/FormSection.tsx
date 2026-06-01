@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Check } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { FormData, Step } from '../types';
@@ -7,6 +7,7 @@ import Step2 from './FormSteps/Step2';
 import Step3 from './FormSteps/Step3';
 import Step4 from './FormSteps/Step4';
 import Step5 from './FormSteps/Step5';
+import Step6 from './FormSteps/Step6';
 
 interface FormSectionProps {
   sectionRef: React.RefObject<HTMLDivElement>;
@@ -21,6 +22,7 @@ export default function FormSection({ sectionRef }: FormSectionProps) {
     email: '',
     phone: '',
     currentScore: '',
+    callTime: '',
   });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -37,24 +39,14 @@ export default function FormSection({ sectionRef }: FormSectionProps) {
     setCurrentStep((from + 1) as Step);
   };
 
-  const handleStep1Next = () => {
-    if (formData.isParent === true) goNext(1);
-  };
-
-  const handleStep2Next = () => {
-    if (formData.parentName.trim() && formData.studentName.trim()) goNext(2);
-  };
-
-  const handleStep3Next = () => {
-    if (formData.email.trim()) goNext(3);
-  };
-
-  const handleStep4Next = () => {
-    if (formData.phone.trim()) goNext(4);
-  };
+  const handleStep1Next = () => { if (formData.isParent === true) goNext(1); };
+  const handleStep2Next = () => { if (formData.parentName.trim() && formData.studentName.trim()) goNext(2); };
+  const handleStep3Next = () => { if (formData.email.trim()) goNext(3); };
+  const handleStep4Next = () => { if (formData.phone.trim()) goNext(4); };
+  const handleStep5Next = () => { if (formData.currentScore) goNext(5); };
 
   const handleSubmit = async () => {
-    if (!formData.currentScore) return;
+    if (!formData.callTime) return;
     setSubmitting(true);
     try {
       await supabase.from('sat_leads').insert({
@@ -64,6 +56,7 @@ export default function FormSection({ sectionRef }: FormSectionProps) {
         email: formData.email,
         phone: formData.phone,
         current_sat_score: formData.currentScore,
+        call_time: formData.callTime,
       });
       setSubmitted(true);
     } catch {
@@ -71,13 +64,6 @@ export default function FormSection({ sectionRef }: FormSectionProps) {
     } finally {
       setSubmitting(false);
     }
-  };
-
-  const handleNavNext = () => {
-    if (currentStep === 1) handleStep1Next();
-    else if (currentStep === 2) handleStep2Next();
-    else if (currentStep === 3) handleStep3Next();
-    else if (currentStep === 4) handleStep4Next();
   };
 
   return (
@@ -135,12 +121,20 @@ export default function FormSection({ sectionRef }: FormSectionProps) {
           {currentStep >= 5 && (
             <Step5
               formData={formData}
-              submitting={submitting}
+              isActive={currentStep === 5}
               onSelect={(score) => setField('currentScore', score)}
-              onSubmit={handleSubmit}
+              onNext={handleStep5Next}
             />
           )}
 
+          {currentStep >= 6 && (
+            <Step6
+              formData={formData}
+              submitting={submitting}
+              onSelect={(callTime) => setField('callTime', callTime)}
+              onSubmit={handleSubmit}
+            />
+          )}
         </div>
       )}
     </section>

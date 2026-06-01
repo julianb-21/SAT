@@ -17,7 +17,7 @@ export default function Step1({ formData, isActive, onSelect, onNext }: Step1Pro
       </div>
       <div className="flex-1">
         <p className="font-semibold text-lg md:text-base mb-4 leading-snug" style={{ color: '#1A2A4A' }}>
-          Are you the parent of a student looking to score 1500+ on the SAT and get a full ride scholarship?
+          Are you the parent or a student?
           <span className="text-red-500 ml-1">*</span>
         </p>
         <div className="flex flex-col gap-3">
