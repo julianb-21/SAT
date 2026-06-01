@@ -1,5 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
-
 const PHOTOS = [
   { src: '/files_6028413-2026-05-27T16-32-59-017Z-unnamed.jpg', alt: 'Family 1' },
   { src: '/files_6028413-2026-05-27T16-33-07-438Z-unnamed.jpg', alt: 'Family 2' },
@@ -11,32 +9,7 @@ const PHOTOS = [
   { src: '/unnamed.jpg', alt: 'Family 8' },
 ];
 
-const VISIBLE = 4;
-
 export default function TrustSection() {
-  const [index, setIndex] = useState(0);
-  const touchStartX = useRef<number | null>(null);
-  const maxIndex = PHOTOS.length - VISIBLE;
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex(prev => (prev >= maxIndex ? 0 : prev + 1));
-    }, 2800);
-    return () => clearInterval(interval);
-  }, [maxIndex]);
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null) return;
-    const delta = touchStartX.current - e.changedTouches[0].clientX;
-    if (delta > 40) setIndex(prev => Math.min(prev + 1, maxIndex));
-    else if (delta < -40) setIndex(prev => Math.max(prev - 1, 0));
-    touchStartX.current = null;
-  };
-
   return (
     <section className="py-10 px-4" style={{ backgroundColor: '#EEF2F8' }}>
       <div className="max-w-4xl mx-auto text-center">
@@ -57,24 +30,14 @@ export default function TrustSection() {
           ))}
         </div>
 
-        {/* Mobile: swipe carousel showing 4 at a time */}
-        <div
-          className="md:hidden overflow-hidden mb-6"
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-        >
-          <div
-            className="flex"
-            style={{
-              transform: `translateX(calc(-${index} * (4rem + 1rem)))`,
-              transition: 'transform 0.4s ease',
-            }}
-          >
-            {PHOTOS.map((photo, i) => (
+        {/* Mobile: infinite marquee */}
+        <div className="md:hidden overflow-hidden mb-6">
+          <div className="flex animate-logo-scroll" style={{ width: 'max-content' }}>
+            {[...PHOTOS, ...PHOTOS].map((photo, i) => (
               <div
                 key={i}
-                className="w-16 h-16 rounded-full overflow-hidden shadow-md shrink-0"
-                style={{ border: '3px solid white', marginRight: '1rem' }}
+                className="w-16 h-16 rounded-full overflow-hidden shadow-md shrink-0 mx-2"
+                style={{ border: '3px solid white' }}
               >
                 <img src={photo.src} alt={photo.alt} className="w-full h-full object-cover" />
               </div>
