@@ -1,5 +1,33 @@
 import { CheckCircle2 } from 'lucide-react';
 
+const COLLEGES_LEFT = [
+  'Duke University',
+  'Georgetown University',
+  'Harvard University',
+  'Northwestern University',
+  'Oxford University',
+  'Stanford University',
+  'University of Pennsylvania (Penn)',
+  'University of Virginia (UVA)',
+  'Vanderbilt University',
+];
+
+const COLLEGES_RIGHT = [
+  'Colby College',
+  'Columbia University',
+  'Cambridge University',
+  'Emory University',
+  'Johns Hopkins University',
+  'Princeton University',
+  'University of Chicago',
+  'University of Southern California (USC)',
+  'University of Texas (Austin)',
+  'University of Virginia (UVA)',
+  'Vanderbilt University',
+  'Washington University in St. Louis (WashU)',
+  'Yale University',
+];
+
 const BULLETS_LEFT = [
   'Pinpoint the skill categories and question types costing the most points',
   'Identify whether timing, trap answers, or test anxiety is the real problem',
@@ -16,45 +44,86 @@ interface Props {
 
 export default function GameplanSection({ onScrollToForm }: Props) {
   return (
-    <section className="py-20 px-4" style={{ backgroundColor: '#F5F0E8' }}>
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-4xl md:text-5xl font-black mb-3 leading-tight" style={{ color: '#1A2A4A' }}>
-          Your Student Does the Work.
-        </h2>
-        <h2 className="text-4xl md:text-5xl font-black italic mb-10 leading-tight" style={{ color: '#1A2A4A', fontFamily: 'Georgia, serif' }}>
-          We Build the System That Gets Them There.
-        </h2>
+    <>
+      {/* Colleges of Langley Prep Alumni */}
+      <section className="py-16 px-4" style={{ backgroundColor: '#F7F9FC' }}>
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-center text-3xl font-black mb-12" style={{ color: '#1A2A4A' }}>
+            Colleges of Langley Prep Alumni
+          </h2>
 
-        <p className="text-base leading-relaxed max-w-2xl mx-auto mb-2" style={{ color: '#3A4F6B' }}>
-          Fill out the short form below and book your free custom gameplan call.
-        </p>
-        <p className="text-base leading-relaxed max-w-2xl mx-auto mb-12" style={{ color: '#3A4F6B' }}>
-          We will review your student's score, goals, and timeline and show you exactly how we get them to 1500+. Here is what we cover:
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-5 text-left mb-14 max-w-3xl mx-auto">
-          {BULLETS_LEFT.map((item) => (
-            <div key={item} className="flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#2D6A2D' }} />
-              <span className="text-sm leading-relaxed" style={{ color: '#2A3A2A' }}>{item}</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 rounded-2xl overflow-hidden" style={{ border: '1px solid #E2EAF4' }}>
+            <div className="bg-white" style={{ borderRight: '1px solid #E2EAF4' }}>
+              <div className="px-8 py-4" style={{ borderBottom: '2px solid #1E4FA0', backgroundColor: '#F0F5FF' }}>
+                <h4 className="font-black text-sm uppercase tracking-wide" style={{ color: '#1A2A4A' }}>HS Graduating Class of 2026</h4>
+              </div>
+              <div className="p-8">
+                <ul className="space-y-3">
+                  {COLLEGES_LEFT.map((college) => (
+                    <li key={college} className="flex items-start gap-2 text-sm" style={{ color: '#4B5E7A' }}>
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#1E4FA0' }} />
+                      {college}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          ))}
-          {BULLETS_RIGHT.map((item) => (
-            <div key={item} className="flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#2D6A2D' }} />
-              <span className="text-sm leading-relaxed" style={{ color: '#2A3A2A' }}>{item}</span>
+            <div className="bg-white">
+              <div className="px-8 py-4" style={{ borderBottom: '2px solid #1E4FA0', backgroundColor: '#F0F5FF' }}>
+                <h4 className="font-black text-sm uppercase tracking-wide" style={{ color: '#1A2A4A' }}>HS Graduating Class of 2025</h4>
+              </div>
+              <div className="p-8">
+                <ul className="space-y-3">
+                  {COLLEGES_RIGHT.map((college) => (
+                    <li key={college} className="flex items-start gap-2 text-sm" style={{ color: '#4B5E7A' }}>
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#1E4FA0' }} />
+                      {college}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          ))}
+          </div>
         </div>
+      </section>
 
-        <button
-          onClick={onScrollToForm}
-          className="px-12 py-5 rounded-xl text-white font-black text-sm tracking-widest uppercase shadow-lg transition-transform hover:scale-105 active:scale-95"
-          style={{ backgroundColor: '#2A2A2A' }}
-        >
-          Book Your Free Gameplan Call
-        </button>
-      </div>
-    </section>
+      {/* Your Student Does the Work */}
+      <section className="py-12 px-4 bg-white">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-center text-3xl font-black mb-1" style={{ color: '#1A2A4A' }}>
+            Your Student Does the Work.
+          </h2>
+          <p className="text-center text-2xl font-black italic mb-6" style={{ color: '#1A2A4A', fontFamily: 'Georgia, serif' }}>
+            We Build the System That Gets Them There.
+          </p>
+
+          <p className="text-center text-sm leading-relaxed max-w-2xl mx-auto mb-1" style={{ color: '#4B5E7A' }}>
+            Fill out the short form below and book your free custom gameplan call.
+          </p>
+          <p className="text-center text-sm leading-relaxed max-w-2xl mx-auto mb-8" style={{ color: '#4B5E7A' }}>
+            We will review your student's score, goals, and timeline and show you exactly how we get them to 1500+. Here is what we cover:
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 max-w-3xl mx-auto">
+            {[...BULLETS_LEFT, ...BULLETS_RIGHT].map((item) => (
+              <div key={item} className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#1E4FA0' }} />
+                <span className="text-sm leading-relaxed" style={{ color: '#4B5E7A' }}>{item}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-center">
+            <button
+              onClick={onScrollToForm}
+              className="px-10 py-4 rounded-full text-white font-black text-base tracking-wide uppercase shadow-lg transition-transform hover:scale-105 active:scale-95"
+              style={{ backgroundColor: '#1E4FA0' }}
+            >
+              Book Your Free Gameplan Call
+            </button>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
