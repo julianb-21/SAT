@@ -7,6 +7,15 @@ export default {
         condensed: ['"Barlow Condensed"', 'sans-serif'],
         body: ['Barlow', 'sans-serif'],
       },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+      },
+      animation: {
+        marquee: 'marquee 12s linear infinite',
+      },
     },
   },
   plugins: [],
