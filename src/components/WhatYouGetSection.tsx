@@ -2,7 +2,7 @@ const CARDS = [
   {
     emoji: '🎓',
     title: 'Free SAT Mini Course',
-    body: 'A concise, structured introduction to the SAT that shows your student exactly how the test is designed, which sections matter most, and where points are most often lost. This mini course helps students stop guessing, focus their prep, and approach the SAT with clarity instead of overwhelm.',
+    body: 'A concise, structured introduction to the SAT that shows your student exactly how the test is designed, which sections matter most, and where points are most often lost. This mini course helps students take a focused approach to prep, and show up on test day feeling confident and ready.',
     tag: 'INSTANT ACCESS',
   },
   {
