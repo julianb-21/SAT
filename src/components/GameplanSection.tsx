@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
-import { CheckCircle2 } from 'lucide-react';
+const STAGGER_MS = 450;
 
 const COLLEGES_LEFT = [
   'Duke University',
@@ -36,39 +35,40 @@ const BULLETS = [
   'Build their personalized plan so there are no surprises on test day.',
 ];
 
-const CYCLE_MS = 600;
-
 interface Props {
   onScrollToForm: () => void;
 }
 
-function AnimatedBullets() {
-  const [visible, setVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(false);
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => setVisible(true));
-          });
-        } else {
-          setVisible(false);
-        }
-      },
-      { threshold: 0.3 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
+function CheckIcon({ delay }: { delay: number }) {
   return (
-    <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 max-w-3xl mx-auto">
-      {BULLETS.map((item) => (
-        <div key={item} className={`flex items-start gap-3 ${visible ? 'animate-check-swoosh' : 'opacity-0'}`}>
-          <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#1E4FA0' }} />
+    <svg
+      viewBox="0 0 24 24"
+      className="w-5 h-5 flex-shrink-0 mt-0.5"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* Always-visible circle */}
+      <circle cx="12" cy="12" r="10" stroke="#1E4FA0" strokeWidth="2" />
+      {/* Animated checkmark */}
+      <path
+        d="M7.5 12l3 3 6-6"
+        stroke="#1E4FA0"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="animate-check-draw"
+        style={{ animationDelay: `${delay}ms` }}
+      />
+    </svg>
+  );
+}
+
+function AnimatedBullets() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 max-w-3xl mx-auto">
+      {BULLETS.map((item, i) => (
+        <div key={item} className="flex items-start gap-3">
+          <CheckIcon delay={i * STAGGER_MS} />
           <span className="text-sm leading-relaxed" style={{ color: '#4B5E7A' }}>{item}</span>
         </div>
       ))}

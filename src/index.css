@@ -20,22 +20,16 @@ input:focus {
     animation: bounce-slow 1.6s ease-in-out infinite;
   }
 
-  @keyframes check-swoosh {
-    0% {
-      opacity: 0;
-      transform: translateX(-18px);
-    }
-    60% {
-      opacity: 1;
-      transform: translateX(4px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
+  @keyframes check-draw {
+    0%   { stroke-dashoffset: 20; }
+    40%  { stroke-dashoffset: 0; }
+    70%  { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: 20; }
   }
 
-  .animate-check-swoosh {
-    animation: check-swoosh 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  .animate-check-draw {
+    stroke-dasharray: 20;
+    stroke-dashoffset: 20;
+    animation: check-draw 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   }
 }
