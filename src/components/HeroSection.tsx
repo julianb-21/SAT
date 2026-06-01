@@ -49,7 +49,7 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
       </div>
 
       {/* Sub-copy */}
-      <p className="text-center text-slate-600 text-sm md:text-base font-body leading-relaxed max-w-2xl mb-2 md:mb-3 px-2">
+      <p className="text-center text-slate-600 text-base md:text-lg font-body leading-relaxed max-w-2xl mb-2 md:mb-3 px-2">
         Fill out the form below to claim a <strong style={{ color: '#1E4FA0' }}>Free, 30-Minute SAT Strategy Call</strong> For Your Child. We will review your student's score, goals, and timeline and show you how they can hit their target score.
       </p>
 
