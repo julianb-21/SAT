@@ -1,4 +1,4 @@
-const STAGGER_MS = 450;
+const STAGGER_MS = 0;
 
 const COLLEGES_LEFT = [
   'Duke University',
