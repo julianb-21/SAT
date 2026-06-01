@@ -75,13 +75,13 @@ function LogoCarousel() {
         {doubled.map((logo, i) => (
           <div
             key={i}
-            className="flex-shrink-0 flex items-center justify-center bg-white rounded-2xl shadow-sm"
-            style={{ width: 160, height: 88, padding: '12px 16px', border: '1px solid #E2EAF4' }}
+            className="flex-shrink-0 flex items-center justify-center bg-white shadow-sm"
+            style={{ width: 100, height: 100, padding: '14px', border: '1px solid #E2EAF4', borderRadius: '50%' }}
           >
             <img
               src={logo.src}
               alt={logo.alt}
-              className={`max-w-full object-contain mix-blend-multiply ${logo.larger ? 'max-h-[105%]' : 'max-h-full'}`}
+              className={`max-w-full object-contain mix-blend-multiply ${logo.larger ? 'max-h-[115%]' : 'max-h-full'}`}
             />
           </div>
         ))}
