@@ -32,7 +32,7 @@ const COLLEGES_RIGHT = [
 
 const BULLETS = [
   'Pinpoint the skill categories and question types costing the most points',
-  'Identify the issue(s) costing your student the most points (i.e: timing, trap answers, test anxiety',
+  'Identify the issue(s) costing your student the most points (i.e: timing, trap answers, test anxiety)',
   'Confirm their target score, timeline, and the right session cadence',
   'Build their personalized plan so there are no surprises on test day.',
 ];
