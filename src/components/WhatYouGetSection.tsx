@@ -13,8 +13,8 @@ const CARDS = [
   },
   {
     emoji: '🧠',
-    title: 'A Live Look at the Langley Prep Method',
-    body: 'We walk you through the exact strategies, from Desmos to SAT reading rules, that have helped students improve by an average of 220 points.',
+    title: 'Guaranteed Improvement',
+    body: 'Our students who follow their personalized SAT plan average a 220-point improvement. We accomplish this by identifying exactly where your student is struggling and providing them a personalized curriculum that targets their problem areas.',
     tag: 'SEE IT IN ACTION',
   },
 ];
