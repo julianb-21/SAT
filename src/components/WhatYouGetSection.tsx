@@ -137,8 +137,8 @@ export default function WhatYouGetSection({ onScrollToForm }: Props) {
         <div className="flex justify-center mb-16">
           <button
             onClick={onScrollToForm}
-            className="px-10 py-4 rounded-full text-white font-black text-base tracking-wide uppercase shadow-lg transition-transform hover:scale-105 active:scale-95"
-            style={{ backgroundColor: '#1E4FA0' }}
+            className="btn-shine px-10 py-4 rounded-full text-white font-black text-base tracking-wide uppercase transition-transform hover:scale-105 active:scale-95"
+            style={{ backgroundColor: '#1E4FA0', boxShadow: '0 8px 32px rgba(30,79,160,0.45), 0 2px 8px rgba(30,79,160,0.25)' }}
           >
             Book Free Strategy Call
           </button>
