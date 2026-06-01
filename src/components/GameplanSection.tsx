@@ -129,7 +129,7 @@ export default function GameplanSection({ onScrollToForm }: Props) {
   return (
     <>
       {/* Colleges of Langley Prep Alumni */}
-      <section className="py-16 px-4" style={{ backgroundColor: '#F7F9FC' }}>
+      <section className="pt-16 pb-0 px-4" style={{ backgroundColor: '#F7F9FC' }}>
         <div className="max-w-4xl mx-auto">
           <h2 className="text-center text-3xl font-black mb-12" style={{ color: '#1A2A4A' }}>
             Colleges of Langley Prep Alumni
