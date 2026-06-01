@@ -48,7 +48,7 @@ const LOGOS = [
   { src: '/OIP copy.webp', alt: 'University of Chicago' },
   { src: '/Vanderbilt_University_seal-1024x1024.png', alt: 'Vanderbilt University' },
   { src: '/OIP copy copy.webp', alt: 'Washington University in St. Louis', whiteBg: true },
-  { src: '/jo6476ce3f-johns-hopkins-university-logo-color-brand-guidelines.png', alt: 'Johns Hopkins University', whiteBg: true },
+  { src: '/logos-vertical-1024x683.jpg', alt: 'Johns Hopkins University', whiteBg: true },
   { src: '/carnegie-mellon-university-northwestern-university-college-academic-degree-seal-thumbnail.jpg', alt: 'Northwestern University', whiteBg: true },
   { src: '/university-of-cambridge.png', alt: 'University of Cambridge', whiteBg: true },
 ];
