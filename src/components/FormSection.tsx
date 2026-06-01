@@ -39,7 +39,7 @@ export default function FormSection({ sectionRef }: FormSectionProps) {
     setCurrentStep((from + 1) as Step);
   };
 
-  const handleStep1Next = () => { if (formData.isParent === true) goNext(1); };
+  const handleStep1Next = () => { if (formData.isParent !== null) goNext(1); };
   const handleStep2Next = () => { if (formData.parentName.trim() && formData.studentName.trim()) goNext(2); };
   const handleStep3Next = () => { if (formData.email.trim()) goNext(3); };
   const handleStep4Next = () => { if (formData.phone.trim()) goNext(4); };

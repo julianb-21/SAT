@@ -38,7 +38,7 @@ export default function Step1({ formData, isActive, onSelect, onNext }: Step1Pro
             onClick={() => onSelect(false)}
             className="flex items-center gap-3 border rounded-md px-4 py-3.5 text-left text-base md:text-sm font-medium transition-all"
             style={formData.isParent === false
-              ? { borderColor: '#ef4444', backgroundColor: '#fef2f2', color: '#b91c1c' }
+              ? { borderColor: '#1E4FA0', backgroundColor: '#EEF2F8', color: '#1A2A4A' }
               : { borderColor: '#cbd5e1', backgroundColor: 'white', color: '#475569' }}
           >
             <span className="w-7 h-7 rounded border flex items-center justify-center text-xs font-bold shrink-0"
@@ -49,13 +49,7 @@ export default function Step1({ formData, isActive, onSelect, onNext }: Step1Pro
           </button>
         </div>
 
-        {formData.isParent === false && (
-          <p className="mt-4 text-red-600 text-sm font-medium">
-            This offer is for parents/guardians only. Please have a parent fill this out.
-          </p>
-        )}
-
-        {isActive && formData.isParent === true && (
+        {isActive && formData.isParent !== null && (
           <button
             onClick={onNext}
             className="mt-5 px-6 py-2.5 text-white font-bold rounded-md flex items-center gap-2 text-sm transition-all hover:opacity-90 active:scale-95"
