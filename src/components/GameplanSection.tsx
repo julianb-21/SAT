@@ -50,7 +50,7 @@ const LOGOS = [
   { src: '/OIP copy copy.webp', alt: 'Washington University in St. Louis', whiteBg: true },
   { src: '/logos-vertical-1024x683.jpg', alt: 'Johns Hopkins University', whiteBg: true },
   { src: '/OIP copy copy copy copy.webp', alt: 'Northwestern University', whiteBg: true },
-  { src: '/university-of-cambridge.png', alt: 'University of Cambridge', whiteBg: true },
+  { src: '/files_6028413-2026-06-01T14-53-56-648Z-Cambridge_logo.webp', alt: 'University of Cambridge', whiteBg: true },
 ];
 
 function LogoCarousel() {
