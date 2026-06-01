@@ -12,9 +12,14 @@ export default {
           '0%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-50%)' },
         },
+        'marquee-photos': {
+          '0%': { transform: 'translateX(0px)' },
+          '100%': { transform: 'translateX(-720px)' },
+        },
       },
       animation: {
         marquee: 'marquee 12s linear infinite',
+        'marquee-photos': 'marquee-photos 18s linear infinite',
       },
     },
   },

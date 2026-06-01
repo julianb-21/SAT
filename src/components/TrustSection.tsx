@@ -31,7 +31,10 @@ export default function TrustSection() {
           ))}
         </div>
         <div className="md:hidden overflow-hidden mb-6">
-          <div className="flex animate-marquee">
+          <div
+            className="flex"
+            style={{ animation: 'marquee-photos 18s linear infinite', width: 'max-content' }}
+          >
             {[...PHOTOS, ...PHOTOS].map((photo, i) => (
               <div
                 key={i}
