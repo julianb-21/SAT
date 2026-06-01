@@ -28,18 +28,11 @@ export default function Step2({ formData, isActive, onChange, onNext }: Step2Pro
             onChange={(e) => onChange('parentName', e.target.value)}
             className={INPUT_CLASS}
           />
-          <input
-            type="text"
-            placeholder="Your student's name"
-            value={formData.studentName}
-            onChange={(e) => onChange('studentName', e.target.value)}
-            className={INPUT_CLASS}
-          />
         </div>
         {isActive && (
           <button
             onClick={onNext}
-            disabled={!formData.parentName.trim() || !formData.studentName.trim()}
+            disabled={!formData.parentName.trim()}
             className="mt-5 px-6 py-2.5 text-white font-bold rounded-md flex items-center gap-2 text-sm transition-all hover:opacity-90 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
             style={{ backgroundColor: '#1E4FA0' }}
           >
