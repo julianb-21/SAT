@@ -78,7 +78,7 @@ function LogoCarousel() {
             <img
               src={logo.src}
               alt={logo.alt}
-              className="h-14 w-auto object-contain"
+              className="h-14 w-auto object-contain mix-blend-multiply"
             />
           </div>
         ))}
