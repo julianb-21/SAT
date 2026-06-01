@@ -55,10 +55,6 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
         Fill out the form below to claim a <strong style={{ color: '#1E4FA0' }}>Free, 30-Minute SAT Strategy Call</strong> For Your Child. We will review your student's score, goals, and timeline and show you how they can hit their target score.
       </p>
 
-      <p className="text-center text-slate-500 text-sm font-medium mb-5 md:mb-6">
-        (Only <span style={{ color: '#F26522' }} className="font-bold">7 spots</span> left)
-      </p>
-
       <ScrollArrow onClick={onScrollToForm} />
     </section>
   );
