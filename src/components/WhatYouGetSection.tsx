@@ -21,57 +21,72 @@ const CARDS = [
   },
 ];
 
-function MobileCard({ card, index }: { card: typeof CARDS[0]; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(index === 0);
+function MobileAccordion() {
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.intersectionRatio >= 0.6) setActive(true);
-        else setActive(false);
-      },
-      { threshold: 0.6 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
+    const handleScroll = () => {
+      const viewportMid = window.innerHeight / 2;
+      let closestIndex = 0;
+      let closestDist = Infinity;
+
+      cardRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const cardMid = rect.top + rect.height / 2;
+        const dist = Math.abs(cardMid - viewportMid);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closestIndex = i;
+        }
+      });
+
+      setActiveIndex(prev => prev !== closestIndex ? closestIndex : prev);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div
-      ref={ref}
-      className="bg-white rounded-2xl flex flex-col transition-all duration-300"
-      style={{
-        border: '1px solid #E2EAF4',
-        padding: active ? '1.75rem' : '1.25rem 1.75rem',
-        overflow: 'hidden',
-      }}
-    >
-      <div className="text-3xl mb-3">{card.emoji}</div>
-      <h3 className="font-black leading-snug" style={{ color: '#1A2A4A', fontSize: active ? '1rem' : '1.1rem' }}>
-        {card.title}
-      </h3>
-
-      {/* Expanded content */}
-      <div
-        style={{
-          maxHeight: active ? '500px' : '0px',
-          opacity: active ? 1 : 0,
-          overflow: 'hidden',
-          transition: 'max-height 0.35s ease, opacity 0.3s ease',
-        }}
-      >
-        <p className="text-sm leading-relaxed mt-3 flex-1" style={{ color: '#4B5E7A' }}>
-          {card.body}
-        </p>
-        <div className="mt-6 pt-4" style={{ borderTop: '2px solid #1E4FA0' }}>
-          <span className="text-xs font-black tracking-widest uppercase" style={{ color: '#1E4FA0' }}>
-            {card.tag}
-          </span>
-        </div>
-      </div>
+    <div className="flex flex-col gap-3 mb-10 md:hidden">
+      {CARDS.map((card, i) => {
+        const isActive = i === activeIndex;
+        return (
+          <div
+            key={i}
+            ref={el => { cardRefs.current[i] = el; }}
+            className="bg-white rounded-2xl overflow-hidden"
+            style={{ border: '1px solid #E2EAF4' }}
+          >
+            <div style={{ padding: isActive ? '1.75rem' : '1rem 1.75rem', transition: 'padding 0.3s ease' }}>
+              <div style={{ fontSize: '1.75rem', marginBottom: '0.4rem' }}>{card.emoji}</div>
+              <h3 style={{ color: '#1A2A4A', fontWeight: 900, lineHeight: 1.2, fontSize: '1rem', margin: 0 }}>
+                {card.title}
+              </h3>
+              <div
+                style={{
+                  maxHeight: isActive ? '400px' : '0px',
+                  opacity: isActive ? 1 : 0,
+                  overflow: 'hidden',
+                  transition: 'max-height 0.4s ease, opacity 0.3s ease',
+                }}
+              >
+                <p style={{ color: '#4B5E7A', fontSize: '0.875rem', lineHeight: 1.6, marginTop: '0.75rem', marginBottom: 0 }}>
+                  {card.body}
+                </p>
+                <div style={{ marginTop: '1.25rem', paddingTop: '1rem', borderTop: '2px solid #1E4FA0' }}>
+                  <span style={{ color: '#1E4FA0', fontSize: '0.7rem', fontWeight: 900, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                    {card.tag}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -115,12 +130,8 @@ export default function WhatYouGetSection({ onScrollToForm }: Props) {
           ))}
         </div>
 
-        {/* Mobile: scroll-expand cards */}
-        <div className="flex flex-col gap-4 mb-10 md:hidden">
-          {CARDS.map((card, i) => (
-            <MobileCard key={i} card={card} index={i} />
-          ))}
-        </div>
+        {/* Mobile: scroll-driven accordion */}
+        <MobileAccordion />
 
         {/* CTA */}
         <div className="flex justify-center mb-16">
