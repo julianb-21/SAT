@@ -43,58 +43,35 @@ interface Props {
 }
 
 function AnimatedBullets() {
-  const [lit, setLit] = useState(0);
+  const [visible, setVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const startCycle = () => {
-    if (timerRef.current) return;
-    timerRef.current = setInterval(() => {
-      setLit((prev) => (prev + 1) % (BULLETS.length + 1));
-    }, CYCLE_MS);
-  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          startCycle();
+          setVisible(false);
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => setVisible(true));
+          });
         } else {
-          if (timerRef.current) {
-            clearInterval(timerRef.current);
-            timerRef.current = null;
-          }
-          setLit(0);
+          setVisible(false);
         }
       },
       { threshold: 0.3 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => {
-      observer.disconnect();
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
     <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 max-w-3xl mx-auto">
-      {BULLETS.map((item, i) => {
-        const active = lit === 0 ? false : i < lit;
-        return (
-          <div key={item} className="flex items-start gap-3">
-            <CheckCircle2
-              className="w-5 h-5 flex-shrink-0 mt-0.5 transition-colors duration-300"
-              style={{ color: active ? '#1E4FA0' : '#CBD5E1' }}
-            />
-            <span
-              className="text-sm leading-relaxed transition-colors duration-300"
-              style={{ color: active ? '#4B5E7A' : '#94A3B8' }}
-            >
-              {item}
-            </span>
-          </div>
-        );
-      })}
+      {BULLETS.map((item) => (
+        <div key={item} className={`flex items-start gap-3 ${visible ? 'animate-check-swoosh' : 'opacity-0'}`}>
+          <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#1E4FA0' }} />
+          <span className="text-sm leading-relaxed" style={{ color: '#4B5E7A' }}>{item}</span>
+        </div>
+      ))}
     </div>
   );
 }
@@ -150,7 +127,7 @@ export default function GameplanSection({ onScrollToForm }: Props) {
           <h2 className="text-center text-3xl font-black mb-1" style={{ color: '#1A2A4A' }}>
             Your Student Does the Work.
           </h2>
-          <p className="text-center text-2xl font-black italic mb-6" style={{ color: '#1A2A4A', fontFamily: 'Georgia, serif' }}>
+          <p className="text-center text-2xl font-black mb-6" style={{ color: '#1A2A4A' }}>
             We Build the System That Gets Them There.
           </p>
 

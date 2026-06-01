@@ -19,4 +19,23 @@ input:focus {
   .animate-bounce-slow {
     animation: bounce-slow 1.6s ease-in-out infinite;
   }
+
+  @keyframes check-swoosh {
+    0% {
+      opacity: 0;
+      transform: translateX(-18px);
+    }
+    60% {
+      opacity: 1;
+      transform: translateX(4px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-check-swoosh {
+    animation: check-swoosh 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
 }
