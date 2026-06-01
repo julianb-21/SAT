@@ -17,7 +17,7 @@ export default function Step2({ formData, isActive, onChange, onNext }: Step2Pro
       </div>
       <div className="flex-1">
         <p className="font-semibold text-base mb-4" style={{ color: '#1A2A4A' }}>
-          What are your names?
+          Parent's Full Name
           <span className="text-red-500 ml-1">*</span>
         </p>
         <div className="flex flex-col gap-3">
