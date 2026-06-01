@@ -47,10 +47,10 @@ const LOGOS = [
   { src: '/university-of-oxford9718.jpg', alt: 'University of Oxford' },
   { src: '/OIP copy.webp', alt: 'University of Chicago' },
   { src: '/Vanderbilt_University_seal-1024x1024.png', alt: 'Vanderbilt University' },
-  { src: '/OIP copy copy.webp', alt: 'Washington University in St. Louis', whiteBg: true },
-  { src: '/logos-vertical-1024x683.jpg', alt: 'Johns Hopkins University', whiteBg: true },
-  { src: '/OIP copy copy copy copy.webp', alt: 'Northwestern University', whiteBg: true },
-  { src: '/files_6028413-2026-06-01T14-53-56-648Z-Cambridge_logo.webp', alt: 'University of Cambridge', whiteBg: true },
+  { src: '/OIP copy copy.webp', alt: 'Washington University in St. Louis' },
+  { src: '/logos-vertical-1024x683.jpg', alt: 'Johns Hopkins University' },
+  { src: '/OIP copy copy copy copy.webp', alt: 'Northwestern University' },
+  { src: '/files_6028413-2026-06-01T14-53-56-648Z-Cambridge_logo.webp', alt: 'University of Cambridge' },
 ];
 
 function LogoCarousel() {
@@ -69,16 +69,20 @@ function LogoCarousel() {
   const doubled = [...LOGOS, ...LOGOS];
 
   return (
-    <div ref={ref} className="overflow-hidden py-4" style={{ backgroundColor: '#F7F9FC' }}>
+    <div ref={ref} className="overflow-hidden py-6" style={{ backgroundColor: '#F7F9FC' }}>
       <div
-        className={`flex items-center gap-12 w-max ${running ? 'animate-logo-scroll' : 'animate-logo-scroll animate-logo-scroll-paused'}`}
+        className={`flex items-center gap-6 w-max ${running ? 'animate-logo-scroll' : 'animate-logo-scroll animate-logo-scroll-paused'}`}
       >
         {doubled.map((logo, i) => (
-          <div key={i} className={`flex items-center justify-center flex-shrink-0 px-2 ${logo.whiteBg ? 'bg-white mix-blend-multiply rounded' : ''}`}>
+          <div
+            key={i}
+            className="flex-shrink-0 flex items-center justify-center bg-white rounded-xl shadow-sm"
+            style={{ width: 160, height: 88, padding: '12px 16px', border: '1px solid #E2EAF4' }}
+          >
             <img
               src={logo.src}
               alt={logo.alt}
-              className="h-14 w-auto object-contain mix-blend-multiply"
+              className="max-h-full max-w-full object-contain mix-blend-multiply"
             />
           </div>
         ))}
