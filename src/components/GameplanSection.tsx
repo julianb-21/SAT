@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { CheckCircle2 } from 'lucide-react';
 
 const COLLEGES_LEFT = [
@@ -28,18 +29,74 @@ const COLLEGES_RIGHT = [
   'Yale University',
 ];
 
-const BULLETS_LEFT = [
+const BULLETS = [
   'Pinpoint the skill categories and question types costing the most points',
   'Identify whether timing, trap answers, or test anxiety is the real problem',
+  'Confirm their target score, timeline, and the right session cadence',
+  'Build their personalized plan so there are no surprises on test day.',
 ];
 
-const BULLETS_RIGHT = [
-  'Confirm their target score, timeline, and the right session cadence',
-  'Build their personalized plan so there is no more guessing',
-];
+const CYCLE_MS = 600;
 
 interface Props {
   onScrollToForm: () => void;
+}
+
+function AnimatedBullets() {
+  const [lit, setLit] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const startCycle = () => {
+    if (timerRef.current) return;
+    timerRef.current = setInterval(() => {
+      setLit((prev) => (prev + 1) % (BULLETS.length + 1));
+    }, CYCLE_MS);
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          startCycle();
+        } else {
+          if (timerRef.current) {
+            clearInterval(timerRef.current);
+            timerRef.current = null;
+          }
+          setLit(0);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => {
+      observer.disconnect();
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, []);
+
+  return (
+    <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 max-w-3xl mx-auto">
+      {BULLETS.map((item, i) => {
+        const active = lit === 0 ? false : i < lit;
+        return (
+          <div key={item} className="flex items-start gap-3">
+            <CheckCircle2
+              className="w-5 h-5 flex-shrink-0 mt-0.5 transition-colors duration-300"
+              style={{ color: active ? '#1E4FA0' : '#CBD5E1' }}
+            />
+            <span
+              className="text-sm leading-relaxed transition-colors duration-300"
+              style={{ color: active ? '#4B5E7A' : '#94A3B8' }}
+            >
+              {item}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 export default function GameplanSection({ onScrollToForm }: Props) {
@@ -98,20 +155,13 @@ export default function GameplanSection({ onScrollToForm }: Props) {
           </p>
 
           <p className="text-center text-sm leading-relaxed max-w-2xl mx-auto mb-1" style={{ color: '#4B5E7A' }}>
-            Fill out the short form below and book your free custom gameplan call.
+            Fill out the short form below and book your Free SAT Strategy Session
           </p>
           <p className="text-center text-sm leading-relaxed max-w-2xl mx-auto mb-8" style={{ color: '#4B5E7A' }}>
-            We will review your student's score, goals, and timeline and show you exactly how we get them to 1500+. Here is what we cover:
+            We will review your student's score, goals, and timeline and show you exactly how they can reach their goals. Here is what we cover:
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10 max-w-3xl mx-auto">
-            {[...BULLETS_LEFT, ...BULLETS_RIGHT].map((item) => (
-              <div key={item} className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: '#1E4FA0' }} />
-                <span className="text-sm leading-relaxed" style={{ color: '#4B5E7A' }}>{item}</span>
-              </div>
-            ))}
-          </div>
+          <AnimatedBullets />
 
           <div className="flex justify-center">
             <button
