@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from 'react';
+
 const INDEPENDENT = [
   'Field School',
   'Georgetown Day School',
@@ -58,6 +60,11 @@ const COLLEGES_RIGHT = [
   'Yale University',
 ];
 
+const COLLEGE_PANELS = [
+  { label: 'HS Graduating Class of 2026', colleges: COLLEGES_LEFT },
+  { label: 'HS Graduating Class of 2025', colleges: COLLEGES_RIGHT },
+];
+
 interface Props {
   onScrollToForm: () => void;
 }
@@ -72,6 +79,80 @@ function CtaButton({ onClick }: { onClick: () => void }) {
       >
         Book Free Strategy Call
       </button>
+    </div>
+  );
+}
+
+function MobileCollegeAccordion() {
+  const panelRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const viewportMid = window.innerHeight / 2;
+      let closestIndex = 0;
+      let closestDist = Infinity;
+
+      panelRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const cardMid = rect.top + rect.height / 2;
+        const dist = Math.abs(cardMid - viewportMid);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closestIndex = i;
+        }
+      });
+
+      setActiveIndex(prev => prev !== closestIndex ? closestIndex : prev);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <div className="flex flex-col gap-3 md:hidden">
+      {COLLEGE_PANELS.map((panel, i) => {
+        const isActive = i === activeIndex;
+        return (
+          <div
+            key={i}
+            ref={el => { panelRefs.current[i] = el; }}
+            className="bg-white rounded-2xl overflow-hidden"
+            style={{ border: '1px solid #E2EAF4' }}
+          >
+            <div
+              className="px-6 py-4"
+              style={{ borderBottom: isActive ? '2px solid #1E4FA0' : '2px solid transparent', backgroundColor: '#F0F5FF', transition: 'border-color 0.3s ease' }}
+            >
+              <h4 className="font-black text-sm uppercase tracking-wide" style={{ color: '#1A2A4A' }}>
+                {panel.label}
+              </h4>
+            </div>
+            <div
+              style={{
+                maxHeight: isActive ? '600px' : '0px',
+                opacity: isActive ? 1 : 0,
+                overflow: 'hidden',
+                transition: 'max-height 0.4s ease, opacity 0.3s ease',
+              }}
+            >
+              <div className="p-6">
+                <ul className="space-y-3">
+                  {panel.colleges.map((college) => (
+                    <li key={college} className="flex items-start gap-2 text-sm" style={{ color: '#4B5E7A' }}>
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: '#1E4FA0' }} />
+                      {college}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -123,7 +204,8 @@ export default function StudentsServedSection({ onScrollToForm }: Props) {
             Colleges of Langley Prep Alumni
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 rounded-2xl overflow-hidden" style={{ border: '1px solid #E2EAF4' }}>
+          {/* Desktop: side-by-side panels */}
+          <div className="hidden md:grid grid-cols-2 gap-0 rounded-2xl overflow-hidden" style={{ border: '1px solid #E2EAF4' }}>
             <div className="bg-white" style={{ borderRight: '1px solid #E2EAF4' }}>
               <div className="px-8 py-4" style={{ borderBottom: '2px solid #1E4FA0', backgroundColor: '#F0F5FF' }}>
                 <h4 className="font-black text-sm uppercase tracking-wide" style={{ color: '#1A2A4A' }}>HS Graduating Class of 2026</h4>
@@ -155,6 +237,9 @@ export default function StudentsServedSection({ onScrollToForm }: Props) {
               </div>
             </div>
           </div>
+
+          {/* Mobile: scroll-driven accordion */}
+          <MobileCollegeAccordion />
 
           <CtaButton onClick={onScrollToForm} />
         </div>
