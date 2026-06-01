@@ -3,7 +3,7 @@ import HeroSection from './components/HeroSection';
 import FormSection from './components/FormSection';
 import TrustSection from './components/TrustSection';
 import WhatYouGetSection from './components/WhatYouGetSection';
-import StudentsServedSection from './components/StudentsServedSection';
+import GameplanSection from './components/GameplanSection';
 
 export default function App() {
   const formRef = useRef<HTMLDivElement>(null);
@@ -18,7 +18,7 @@ export default function App() {
       <FormSection sectionRef={formRef} />
       <TrustSection />
       <WhatYouGetSection onScrollToForm={scrollToForm} />
-      <StudentsServedSection onScrollToForm={scrollToForm} />
+      <GameplanSection onScrollToForm={scrollToForm} />
     </div>
   );
 }
