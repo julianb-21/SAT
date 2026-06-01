@@ -146,7 +146,7 @@ export default function WhatYouGetSection({ onScrollToForm }: Props) {
 
         {/* Reviews */}
         <h2 className="text-center text-2xl font-black mb-8" style={{ color: '#1A2A4A' }}>
-          What Our Members Say:
+          What Our Clients Say:
         </h2>
         <div
           className="elfsight-app-28a81b14-414f-4c8b-a6c4-249d9eb70a77"
