@@ -61,17 +61,17 @@ function LogoCarousel() {
   const doubled = [...LOGOS, ...LOGOS];
 
   return (
-    <div ref={ref} className="overflow-hidden py-8" style={{ backgroundColor: '#F7F9FC' }}>
+    <div ref={ref} className="overflow-hidden py-4" style={{ backgroundColor: '#F7F9FC' }}>
       <div
-        className={`flex items-center gap-16 w-max ${running ? 'animate-logo-scroll' : 'animate-logo-scroll animate-logo-scroll-paused'}`}
+        className={`flex items-center gap-12 w-max ${running ? 'animate-logo-scroll' : 'animate-logo-scroll animate-logo-scroll-paused'}`}
       >
         {doubled.map((logo, i) => (
-          <div key={i} className="flex items-center justify-center flex-shrink-0 h-16 px-4">
+          <div key={i} className="flex items-center justify-center flex-shrink-0 h-12 px-2">
             <img
               src={logo.src}
               alt={logo.alt}
-              className="max-h-14 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-              style={{ maxWidth: '140px' }}
+              className="max-h-10 w-auto object-contain"
+              style={{ maxWidth: '120px' }}
             />
           </div>
         ))}
