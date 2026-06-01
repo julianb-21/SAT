@@ -47,10 +47,10 @@ const LOGOS = [
   { src: '/university-of-oxford9718.jpg', alt: 'University of Oxford' },
   { src: '/OIP copy.webp', alt: 'University of Chicago' },
   { src: '/Vanderbilt_University_seal-1024x1024.png', alt: 'Vanderbilt University' },
-  { src: '/OIP copy copy.webp', alt: 'Washington University in St. Louis' },
-  { src: '/jo6476ce3f-johns-hopkins-university-logo-color-brand-guidelines.png', alt: 'Johns Hopkins University' },
-  { src: '/carnegie-mellon-university-northwestern-university-college-academic-degree-seal-thumbnail.jpg', alt: 'Northwestern University' },
-  { src: '/university-of-cambridge.png', alt: 'University of Cambridge' },
+  { src: '/OIP copy copy.webp', alt: 'Washington University in St. Louis', whiteBg: true },
+  { src: '/jo6476ce3f-johns-hopkins-university-logo-color-brand-guidelines.png', alt: 'Johns Hopkins University', whiteBg: true },
+  { src: '/carnegie-mellon-university-northwestern-university-college-academic-degree-seal-thumbnail.jpg', alt: 'Northwestern University', whiteBg: true },
+  { src: '/university-of-cambridge.png', alt: 'University of Cambridge', whiteBg: true },
 ];
 
 function LogoCarousel() {
@@ -74,7 +74,7 @@ function LogoCarousel() {
         className={`flex items-center gap-12 w-max ${running ? 'animate-logo-scroll' : 'animate-logo-scroll animate-logo-scroll-paused'}`}
       >
         {doubled.map((logo, i) => (
-          <div key={i} className="flex items-center justify-center flex-shrink-0 px-2">
+          <div key={i} className={`flex items-center justify-center flex-shrink-0 px-2 ${logo.whiteBg ? 'bg-white mix-blend-multiply rounded' : ''}`}>
             <img
               src={logo.src}
               alt={logo.alt}
