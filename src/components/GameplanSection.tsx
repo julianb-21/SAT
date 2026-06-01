@@ -49,8 +49,7 @@ const LOGOS = [
   { src: '/Vanderbilt_University_seal-1024x1024.png', alt: 'Vanderbilt University' },
   { src: '/OIP copy copy.webp', alt: 'Washington University in St. Louis' },
   { src: '/logos-vertical-1024x683.jpg', alt: 'Johns Hopkins University' },
-  { src: '/OIP copy copy copy copy.webp', alt: 'Northwestern University' },
-  { src: '/files_6028413-2026-06-01T14-53-56-648Z-Cambridge_logo.webp', alt: 'University of Cambridge' },
+  { src: '/files_6028413-2026-06-01T14-53-56-648Z-Cambridge_logo.webp', alt: 'University of Cambridge', larger: true },
 ];
 
 function LogoCarousel() {
@@ -76,13 +75,13 @@ function LogoCarousel() {
         {doubled.map((logo, i) => (
           <div
             key={i}
-            className="flex-shrink-0 flex items-center justify-center bg-white rounded-xl shadow-sm"
+            className="flex-shrink-0 flex items-center justify-center bg-white rounded-2xl shadow-sm"
             style={{ width: 160, height: 88, padding: '12px 16px', border: '1px solid #E2EAF4' }}
           >
             <img
               src={logo.src}
               alt={logo.alt}
-              className="max-h-full max-w-full object-contain mix-blend-multiply"
+              className={`max-w-full object-contain mix-blend-multiply ${logo.larger ? 'max-h-[105%]' : 'max-h-full'}`}
             />
           </div>
         ))}
