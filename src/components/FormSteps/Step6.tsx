@@ -7,10 +7,12 @@ export default function Step6() {
         </h3>
         <p className="text-slate-500 text-sm mt-1">Pick a time that works for you below.</p>
       </div>
-      <div
-        className="calendly-inline-widget w-full"
-        data-url="https://calendly.com/langleyprep/extra-help-zoom-sessions"
-        style={{ minWidth: '320px', height: '700px' }}
+      <iframe
+        src="https://calendly.com/langleyprep/extra-help-zoom-sessions"
+        width="100%"
+        height="700"
+        frameBorder="0"
+        title="Schedule a call"
       />
     </div>
   );
