@@ -40,11 +40,10 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
         style={{ boxShadow: '0 12px 52px 0 rgba(30,79,160,0.16), 0 4px 12px 0 rgba(30,79,160,0.10)' }}
       >
         <h1 className="font-condensed font-black uppercase leading-tight tracking-tight text-[2rem] md:text-5xl lg:text-[4.5rem]">
-          <span style={{ color: '#1A2A4A' }}>WE AVERAGE A </span>
-          <span style={{ color: '#F26522' }}>220-POINT</span>
+          <span style={{ color: '#1A2A4A' }}>WE HELP DMV STUDENTS </span>
+          <span style={{ color: '#F26522' }}>MAXIMIZE</span>
           <br />
-          <span className="block md:hidden" style={{ color: '#1A2A4A' }}>SAT SCORE IMPROVEMENT!</span>
-          <span className="hidden md:block" style={{ color: '#1A2A4A' }}>IMPROVEMENT ON THE SAT!</span>
+          <span style={{ color: '#1A2A4A' }}>THEIR SAT SCORE & GET INTO THEIR DREAM SCHOOL.</span>
         </h1>
       </div>
 
