@@ -42,7 +42,7 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
         <h1 className="font-condensed font-black uppercase leading-tight tracking-tight text-[2rem] md:text-5xl lg:text-[4.5rem]">
           <span style={{ color: '#1A2A4A' }}>WE HELP STUDENTS BE </span>
           <span style={{ color: '#F26522' }}>PREPARED, CALM,</span>
-          <span style={{ color: '#1A2A4A' }}> AND IN CONTROL ON TEST DAY.</span>
+          <span style={{ color: '#1A2A4A' }}> AND IN CONTROL ON SAT TEST DAY.</span>
         </h1>
       </div>
 
