@@ -59,11 +59,24 @@ export default function FormSection({ sectionRef }: FormSectionProps) {
   };
 
   return (
-    <section
-      ref={sectionRef}
-      className="flex items-center justify-center px-3 pt-12 pb-10 md:px-4 md:py-10 font-body"
-      style={{ background: 'linear-gradient(160deg, #C8D8EF 0%, #AABFE6 100%)' }}
-    >
+    <div ref={sectionRef}>
+      {/* Progress bar — flush at the section boundary */}
+      {!submitted && (
+        <div className="w-full h-1.5" style={{ backgroundColor: '#D1D5DB' }}>
+          <div
+            className="h-1.5 transition-all duration-500"
+            style={{
+              width: `${((currentStep - 1) / 4) * 100}%`,
+              backgroundColor: '#C24E0A',
+            }}
+          />
+        </div>
+      )}
+
+      <section
+        className="flex items-center justify-center px-3 pt-12 pb-10 md:px-4 md:py-10 font-body"
+        style={{ background: 'linear-gradient(160deg, #C8D8EF 0%, #AABFE6 100%)' }}
+      >
       {submitted ? (
         <div className="max-w-lg w-full bg-white rounded-2xl shadow-2xl p-10 text-center">
           <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5" style={{ backgroundColor: '#D9E4F5' }}>
@@ -76,39 +89,6 @@ export default function FormSection({ sectionRef }: FormSectionProps) {
         </div>
       ) : (
         <div className="max-w-2xl w-full">
-          {/* Progress bar */}
-          <div className="mb-5">
-            <div className="relative flex items-center">
-              {/* Track */}
-              <div className="w-full h-2 rounded-full" style={{ backgroundColor: 'rgba(255,255,255,0.35)' }}>
-                <div
-                  className="h-2 rounded-full transition-all duration-500"
-                  style={{
-                    width: `${((currentStep - 1) / 4) * 100}%`,
-                    backgroundColor: '#C24E0A',
-                  }}
-                />
-              </div>
-              {/* Chevron thumb */}
-              <div
-                className="absolute -top-4 flex flex-col items-center transition-all duration-500"
-                style={{ left: `calc(${((currentStep - 1) / 4) * 100}% - 1.25rem)` }}
-              >
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center shadow-md"
-                  style={{ backgroundColor: '#C24E0A' }}
-                >
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <polyline points="3,5 8,11 13,5" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <p className="text-right text-xs mt-3 font-semibold" style={{ color: 'rgba(255,255,255,0.75)' }}>
-              Step {currentStep} of 5
-            </p>
-          </div>
-
           <Step2
             formData={formData}
             isActive={currentStep === 1}
@@ -153,6 +133,7 @@ export default function FormSection({ sectionRef }: FormSectionProps) {
           )}
         </div>
       )}
-    </section>
+      </section>
+    </div>
   );
 }
