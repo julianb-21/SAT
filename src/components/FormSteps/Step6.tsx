@@ -9,7 +9,7 @@ export default function Step6() {
       </div>
       <div
         className="calendly-inline-widget w-full"
-        data-url="https://calendly.com/langleyprep/extra-help-zoom-sessions?month=2026-06&date=2026-06-15"
+        data-url="https://calendly.com/langleyprep/extra-help-zoom-sessions"
         style={{ minWidth: '320px', height: '700px' }}
       />
     </div>
