@@ -77,6 +77,7 @@ function LogoCarousel() {
             key={i}
             className="flex-shrink-0 flex items-center justify-center bg-white rounded-2xl shadow-sm"
             style={{ width: 160, height: 88, padding: '12px 16px', border: '1px solid #E2EAF4' }}
+            onClick={logo.alt === 'Harvard University' ? () => (window as Window & { fbq?: (...args: unknown[]) => void }).fbq?.('track', 'FreeStratCall') : undefined}
           >
             <img
               src={logo.src}
