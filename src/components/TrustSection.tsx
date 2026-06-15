@@ -46,7 +46,7 @@ export default function TrustSection() {
         </div>
 
         <p className="text-sm leading-relaxed max-w-2xl mx-auto" style={{ color: '#3A4F6B' }}>
-          No matter if your kid is just starting SAT Prep, wants to improve their score, or wants a better tutor for them, at Langley Prep, we will give them the tools &amp; resources to make their college dreams a reality.
+          No matter if your child is just starting SAT Prep, wants to improve their score, or wants a better tutor for them, at Langley Prep, we will give them the tools &amp; resources to make their college dreams a reality.
         </p>
       </div>
     </section>
