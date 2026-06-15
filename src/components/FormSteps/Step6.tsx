@@ -8,7 +8,7 @@ export default function Step6() {
         <p className="text-slate-500 text-sm mt-1">Pick a time that works for you below.</p>
       </div>
       <iframe
-        src="https://calendly.com/langleyprep/extra-help-zoom-sessions"
+        src="https://calendly.com/langleyprep/sat-strategy-session"
         width="100%"
         height="700"
         frameBorder="0"
