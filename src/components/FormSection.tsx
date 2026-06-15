@@ -70,41 +70,43 @@ export default function FormSection({ sectionRef }: FormSectionProps) {
         style={{ background: 'linear-gradient(160deg, #C8D8EF 0%, #AABFE6 100%)' }}
       >
         <div className="max-w-2xl w-full">
-          <Step2
-            formData={formData}
-            isActive={currentStep === 1}
-            onChange={setField}
-            onNext={handleStep1Next}
-          />
+          {currentStep === 1 && (
+            <Step2
+              formData={formData}
+              isActive
+              onChange={setField}
+              onNext={handleStep1Next}
+            />
+          )}
 
-          {currentStep >= 2 && (
+          {currentStep === 2 && (
             <Step3
               formData={formData}
-              isActive={currentStep === 2}
+              isActive
               onChange={setField}
               onNext={handleStep2Next}
             />
           )}
 
-          {currentStep >= 3 && (
+          {currentStep === 3 && (
             <Step4
               formData={formData}
-              isActive={currentStep === 3}
+              isActive
               onChange={setField}
               onNext={handleStep3Next}
             />
           )}
 
-          {currentStep >= 4 && (
+          {currentStep === 4 && (
             <Step5
               formData={formData}
-              isActive={currentStep === 4}
+              isActive
               onSelect={(score) => setField('currentScore', score)}
               onNext={() => handleStep4Next(formData.currentScore)}
             />
           )}
 
-          {currentStep >= 5 && <Step6 />}
+          {currentStep === 5 && <Step6 />}
         </div>
       </section>
     </div>
