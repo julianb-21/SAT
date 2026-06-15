@@ -21,7 +21,7 @@ function ScrollArrow({ onClick }: { onClick: () => void }) {
 export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
   return (
     <section
-      className="flex flex-col items-center justify-start px-4 pt-0 pb-6 md:pb-8"
+      className="flex flex-col items-center justify-start px-4 pt-6 pb-6 md:pt-10 md:pb-8"
       style={{ backgroundColor: '#EEF2F8' }}
     >
       {/* Pill label */}
