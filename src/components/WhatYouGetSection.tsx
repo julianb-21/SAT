@@ -1,5 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
-
 const CARDS = [
   {
     emoji: '🎓',
@@ -21,76 +19,6 @@ const CARDS = [
   },
 ];
 
-function MobileAccordion() {
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const viewportMid = window.innerHeight / 2;
-      let closestIndex = 0;
-      let closestDist = Infinity;
-
-      cardRefs.current.forEach((el, i) => {
-        if (!el) return;
-        const rect = el.getBoundingClientRect();
-        const cardMid = rect.top + rect.height / 2;
-        const dist = Math.abs(cardMid - viewportMid);
-        if (dist < closestDist) {
-          closestDist = dist;
-          closestIndex = i;
-        }
-      });
-
-      setActiveIndex(prev => prev !== closestIndex ? closestIndex : prev);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  return (
-    <div className="flex flex-col gap-3 mb-10 md:hidden">
-      {CARDS.map((card, i) => {
-        const isActive = i === activeIndex;
-        return (
-          <div
-            key={i}
-            ref={el => { cardRefs.current[i] = el; }}
-            className="bg-white rounded-2xl overflow-hidden"
-            style={{ border: '1px solid #E2EAF4' }}
-          >
-            <div style={{ padding: isActive ? '1.75rem' : '1rem 1.75rem', transition: 'padding 0.3s ease' }}>
-              <div style={{ fontSize: '1.75rem', marginBottom: '0.4rem' }}>{card.emoji}</div>
-              <h3 style={{ color: '#1A2A4A', fontWeight: 900, lineHeight: 1.2, fontSize: '1rem', margin: 0 }}>
-                {card.title}
-              </h3>
-              <div
-                style={{
-                  maxHeight: isActive ? '400px' : '0px',
-                  opacity: isActive ? 1 : 0,
-                  overflow: 'hidden',
-                  transition: 'max-height 0.4s ease, opacity 0.3s ease',
-                }}
-              >
-                <p style={{ color: '#4B5E7A', fontSize: '0.875rem', lineHeight: 1.6, marginTop: '0.75rem', marginBottom: 0 }}>
-                  {card.body}
-                </p>
-                <div style={{ marginTop: '1.25rem', paddingTop: '1rem', borderTop: '2px solid #1E4FA0' }}>
-                  <span style={{ color: '#1E4FA0', fontSize: '0.7rem', fontWeight: 900, letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                    {card.tag}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
 interface Props {
   onScrollToForm: () => void;
 }
@@ -106,8 +34,7 @@ export default function WhatYouGetSection({ onScrollToForm }: Props) {
           With Langley Prep
         </p>
 
-        {/* Desktop: 3-column grid */}
-        <div className="hidden md:grid grid-cols-3 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
           {CARDS.map((card, i) => (
             <div
               key={i}
@@ -129,9 +56,6 @@ export default function WhatYouGetSection({ onScrollToForm }: Props) {
             </div>
           ))}
         </div>
-
-        {/* Mobile: scroll-driven accordion */}
-        <MobileAccordion />
 
         {/* CTA */}
         <div className="flex justify-center mb-16">
