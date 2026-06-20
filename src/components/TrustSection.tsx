@@ -30,8 +30,11 @@ export default function TrustSection() {
           ))}
         </div>
 
-        {/* Mobile: infinite marquee */}
-        <div className="md:hidden overflow-hidden mb-6">
+        {/* Mobile: infinite marquee — full viewport width, no side clipping */}
+        <div
+          className="md:hidden mb-6"
+          style={{ overflow: 'hidden', marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', width: '100vw' }}
+        >
           <div className="flex animate-logo-scroll" style={{ width: 'max-content' }}>
             {[...PHOTOS, ...PHOTOS].map((photo, i) => (
               <div
