@@ -41,7 +41,7 @@ export default function HeroSection({ onScrollToForm }: HeroSectionProps) {
       >
         <h1
           className="font-condensed font-black uppercase leading-tight tracking-tight"
-          style={{ fontSize: 'clamp(1.75rem, 6.2vw, 4.5rem)' }}
+          style={{ fontSize: 'clamp(1.55rem, 5.5vw, 4.5rem)' }}
         >
           <span style={{ color: '#1A2A4A' }}>WE HELP STUDENTS </span>
           <span style={{ color: '#F26522' }}>EXCEED</span>
