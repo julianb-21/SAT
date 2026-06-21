@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react';
+
 const CARDS = [
   {
     emoji: '🎓',
@@ -24,6 +26,25 @@ interface Props {
 }
 
 export default function WhatYouGetSection({ onScrollToForm }: Props) {
+  const reviewsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = reviewsRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      if (!document.querySelector('script[src*="elfsightcdn"]')) {
+        const s = document.createElement('script');
+        s.src = 'https://elfsightcdn.com/platform.js';
+        s.async = true;
+        document.body.appendChild(s);
+      }
+      observer.disconnect();
+    }, { rootMargin: '300px' });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="py-16 px-4" style={{ backgroundColor: '#F7F9FC' }}>
       <div className="max-w-5xl mx-auto">
@@ -68,11 +89,12 @@ export default function WhatYouGetSection({ onScrollToForm }: Props) {
           </button>
         </div>
 
-        {/* Reviews */}
+        {/* Reviews — Elfsight loads only when this scrolls near the viewport */}
         <h2 className="text-center text-2xl font-black mb-8" style={{ color: '#1A2A4A' }}>
           What Our Clients Say:
         </h2>
         <div
+          ref={reviewsRef}
           className="elfsight-app-28a81b14-414f-4c8b-a6c4-249d9eb70a77"
           data-elfsight-app-lazy
         />

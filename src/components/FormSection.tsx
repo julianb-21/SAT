@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { supabase } from '../lib/supabase';
 import { FormData, Step } from '../types';
 import Step2 from './FormSteps/Step2';
 import Step3 from './FormSteps/Step3';
@@ -38,6 +37,7 @@ export default function FormSection({ sectionRef }: FormSectionProps) {
     const updatedData = { ...formData, currentScore: score };
     setFormData(updatedData);
     try {
+      const { supabase } = await import('../lib/supabase');
       await supabase.from('sat_leads').insert({
         parent_name: updatedData.parentName,
         student_name: updatedData.studentName,
