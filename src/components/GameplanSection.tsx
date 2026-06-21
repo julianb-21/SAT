@@ -82,6 +82,10 @@ function LogoCarousel() {
             <img
               src={logo.src}
               alt={logo.alt}
+              width="128"
+              height="64"
+              loading="lazy"
+              decoding="async"
               className={`max-w-full object-contain mix-blend-multiply ${logo.larger ? 'max-h-[105%]' : 'max-h-full'}`}
             />
           </div>
