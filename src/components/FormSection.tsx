@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { FormData, Step } from '../types';
 import Step2 from './FormSteps/Step2';
 import Step3 from './FormSteps/Step3';
-import Step4 from './FormSteps/Step4';
-import Step5 from './FormSteps/Step5';
 import Step6 from './FormSteps/Step6';
 
 interface FormSectionProps {
@@ -14,52 +12,39 @@ export default function FormSection({ sectionRef }: FormSectionProps) {
   const [currentStep, setCurrentStep] = useState<Step>(1);
   const [formData, setFormData] = useState<FormData>({
     parentName: '',
-    studentName: '',
     email: '',
-    phone: '',
-    currentScore: '',
-    callTime: '',
   });
 
   const setField = (field: keyof FormData, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const goNext = (from: Step) => {
-    setCurrentStep((from + 1) as Step);
+  const handleStep1Next = () => {
+    if (formData.parentName.trim()) setCurrentStep(2);
   };
 
-  const handleStep1Next = () => { if (formData.parentName.trim()) goNext(1); };
-  const handleStep2Next = () => { if (formData.email.trim()) goNext(2); };
-  const handleStep3Next = () => { if (formData.phone.trim()) goNext(3); };
-
-  const handleStep4Next = async (score: string) => {
-    const updatedData = { ...formData, currentScore: score };
-    setFormData(updatedData);
+  const handleStep2Next = async () => {
+    if (!formData.email.trim()) return;
     try {
       const { supabase } = await import('../lib/supabase');
       await supabase.from('sat_leads').insert({
-        parent_name: updatedData.parentName,
-        student_name: updatedData.studentName,
-        email: updatedData.email,
-        phone: updatedData.phone,
-        current_sat_score: score,
-        call_time: '',
+        parent_name: formData.parentName,
+        email: formData.email,
       });
     } catch {
       // silent fail — still advance to Calendly
     }
-    goNext(4);
+    setCurrentStep(3);
   };
 
   return (
     <div ref={sectionRef}>
-      {/* Progress bar — flush at the section boundary */}
+      {/* Progress bar */}
       <div className="w-full h-1.5" style={{ backgroundColor: '#D1D5DB' }}>
         <div
           className="h-1.5 transition-all duration-500"
           style={{
-            width: `${((currentStep - 1) / 4) * 100}%`,
+            width: `${((currentStep - 1) / 2) * 100}%`,
             backgroundColor: '#C24E0A',
           }}
         />
@@ -88,25 +73,7 @@ export default function FormSection({ sectionRef }: FormSectionProps) {
             />
           )}
 
-          {currentStep === 3 && (
-            <Step4
-              formData={formData}
-              isActive
-              onChange={setField}
-              onNext={handleStep3Next}
-            />
-          )}
-
-          {currentStep === 4 && (
-            <Step5
-              formData={formData}
-              isActive
-              onSelect={(score) => setField('currentScore', score)}
-              onNext={() => handleStep4Next(formData.currentScore)}
-            />
-          )}
-
-          {currentStep === 5 && <Step6 />}
+          {currentStep === 3 && <Step6 />}
         </div>
       </section>
     </div>
