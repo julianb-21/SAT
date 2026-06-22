@@ -137,7 +137,27 @@ function AnimatedBullets() {
   );
 }
 
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+  }
+}
+
 export default function GameplanSection({ onScrollToForm }: Props) {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      window.fbq?.('trackCustom', 'Scrolled60');
+      observer.disconnect();
+    }, { threshold: 0.1 });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       {/* Colleges of Langley Prep Alumni */}
@@ -185,7 +205,7 @@ export default function GameplanSection({ onScrollToForm }: Props) {
       <LogoCarousel />
 
       {/* Your Student Does the Work */}
-      <section className="py-12 px-4 bg-white">
+      <section ref={sectionRef} className="py-12 px-4 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-center text-3xl font-black mb-1" style={{ color: '#1A2A4A' }}>
             Your Student Does the Work.
