@@ -25,7 +25,7 @@ export default function TrustSection() {
               className="w-16 h-16 rounded-full overflow-hidden shadow-md shrink-0"
               style={{ border: '3px solid white' }}
             >
-              <img src={photo.src} alt={photo.alt} className="w-full h-full object-cover" />
+              <img src={photo.src} alt={photo.alt} width="64" height="64" loading="lazy" decoding="async" className="w-full h-full object-cover" />
             </div>
           ))}
         </div>
