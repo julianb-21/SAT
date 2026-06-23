@@ -31,16 +31,40 @@ export default function WhatYouGetSection({ onScrollToForm }: Props) {
   useEffect(() => {
     const el = reviewsRef.current;
     if (!el) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return;
+
+    const injectScript = () => {
       if (!document.querySelector('script[src*="elfsightcdn"]')) {
         const s = document.createElement('script');
         s.src = 'https://elfsightcdn.com/platform.js';
         s.async = true;
         document.body.appendChild(s);
       }
+    };
+
+    // Only inject when the page is actually visible. In Instagram/Facebook
+    // in-app browsers an early visibilitychange:hidden fires ~1s after load,
+    // which causes Elfsight to initialize into a zero-size hidden container.
+    // Its internal retry timer then fires ~25s later against a stale DOM
+    // reference → "undefined is not an object". Deferring until visible
+    // prevents that retry path entirely.
+    const loadWhenVisible = () => {
+      if (document.visibilityState === 'visible') {
+        injectScript();
+      } else {
+        const onVisible = () => {
+          if (document.visibilityState !== 'visible') return;
+          document.removeEventListener('visibilitychange', onVisible);
+          injectScript();
+        };
+        document.addEventListener('visibilitychange', onVisible);
+      }
+    };
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
       observer.disconnect();
-    }, { rootMargin: '300px' });
+      loadWhenVisible();
+    }, { rootMargin: '200px' });
     observer.observe(el);
     return () => observer.disconnect();
   }, []);

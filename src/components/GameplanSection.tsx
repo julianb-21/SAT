@@ -149,10 +149,30 @@ export default function GameplanSection({ onScrollToForm }: Props) {
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
+
+    const fireScrolled60 = () => window.fbq?.('trackCustom', 'Scrolled60');
+
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return;
-      window.fbq?.('trackCustom', 'Scrolled60');
       observer.disconnect();
+      // If the page is hidden (Instagram/Facebook IAB fires visibilitychange:hidden
+      // ~1s after load), defer the event until the page is visible again.
+      // fbq has queue support so the call won't be lost regardless, but the
+      // element might scroll out of view while hidden, making the event misleading.
+      if (document.visibilityState === 'visible') {
+        fireScrolled60();
+      } else {
+        const onVisible = () => {
+          if (document.visibilityState !== 'visible') return;
+          document.removeEventListener('visibilitychange', onVisible);
+          // Only fire if the element is still in the viewport when we return
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            fireScrolled60();
+          }
+        };
+        document.addEventListener('visibilitychange', onVisible);
+      }
     }, { threshold: 0.1 });
     observer.observe(el);
     return () => observer.disconnect();
