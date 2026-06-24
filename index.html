@@ -15,7 +15,6 @@
     <!-- Preconnect for fast font DNS/TLS -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Non-blocking font load: paint happens immediately, fonts swap in -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" media="print" onload="this.media='all'" />
     <noscript>
@@ -28,23 +27,33 @@
   </head>
   <body>
     <!--
-      Meta Pixel stub runs immediately so window.fbq is defined before React mounts.
-      fbevents.js loads with async=true — it never blocks rendering.
-      Any fbq() calls made before fbevents.js finishes are queued in fbq.queue
-      and replayed automatically once the script loads, so no events are ever lost
-      even if visibilitychange:hidden fires early in Instagram/Facebook IABs.
+      [LP-DEBUG] Meta Pixel stub: runs inline so window.fbq is defined before React
+      mounts. fbevents.js loads async (never blocks paint). Any fbq() calls queued
+      before fbevents.js loads are replayed automatically.
     -->
     <script>
+      console.log('[LP] fbq-stub: starting inline init, visibilityState=' + document.visibilityState);
       !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      {if(f.fbq){console.log('[LP] fbq-stub: fbq already defined, skipping');return;}
+      n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
       if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
       n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
+      t.src=v;
+      t.onload=function(){console.log('[LP] fbevents.js: loaded successfully, queue length was ' + (f.fbq.queue||[]).length);};
+      t.onerror=function(){console.error('[LP] fbevents.js: FAILED to load');};
+      s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window,document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
+      console.log('[LP] fbq-stub: stub installed, window.fbq type=' + typeof window.fbq);
       fbq('init', '2103609790585624');
       fbq('track', 'PageView');
+      console.log('[LP] fbq-stub: init+PageView queued, queue length=' + (window.fbq.queue||[]).length);
+
+      // Log every future visibilitychange so we can see the IAB hidden/visible cycle
+      document.addEventListener('visibilitychange', function() {
+        console.log('[LP] visibilitychange: state=' + document.visibilityState + ' at t=' + Math.round(performance.now()) + 'ms');
+      });
     </script>
     <noscript>
       <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2103609790585624&ev=PageView&noscript=1"/>
@@ -56,6 +65,7 @@
     <!-- Clarity: deferred until after load so it never blocks LCP -->
     <script>
       window.addEventListener('load', function() {
+        console.log('[LP] load event fired at t=' + Math.round(performance.now()) + 'ms, visibilityState=' + document.visibilityState);
         (function(c,l,a,r,i,t,y){
           c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
           t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;

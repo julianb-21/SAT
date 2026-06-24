@@ -30,28 +30,31 @@ export default function WhatYouGetSection({ onScrollToForm }: Props) {
 
   useEffect(() => {
     const el = reviewsRef.current;
+    console.log('[LP] Elfsight-observer: useEffect running, el=' + (el ? 'found' : 'null') + ', visibilityState=' + document.visibilityState);
     if (!el) return;
 
     const injectScript = () => {
-      if (!document.querySelector('script[src*="elfsightcdn"]')) {
+      const already = !!document.querySelector('script[src*="elfsightcdn"]');
+      console.log('[LP] Elfsight: injectScript called, already loaded=' + already + ', visibilityState=' + document.visibilityState + ', t=' + Math.round(performance.now()) + 'ms');
+      if (!already) {
         const s = document.createElement('script');
         s.src = 'https://elfsightcdn.com/platform.js';
         s.async = true;
+        s.onload = () => console.log('[LP] Elfsight: platform.js loaded successfully');
+        s.onerror = () => console.error('[LP] Elfsight: platform.js FAILED to load');
         document.body.appendChild(s);
+        console.log('[LP] Elfsight: platform.js script tag appended to body');
       }
     };
 
-    // Only inject when the page is actually visible. In Instagram/Facebook
-    // in-app browsers an early visibilitychange:hidden fires ~1s after load,
-    // which causes Elfsight to initialize into a zero-size hidden container.
-    // Its internal retry timer then fires ~25s later against a stale DOM
-    // reference → "undefined is not an object". Deferring until visible
-    // prevents that retry path entirely.
     const loadWhenVisible = () => {
+      console.log('[LP] Elfsight-loadWhenVisible: visibilityState=' + document.visibilityState);
       if (document.visibilityState === 'visible') {
         injectScript();
       } else {
+        console.log('[LP] Elfsight: page hidden, deferring script until visibilitychange');
         const onVisible = () => {
+          console.log('[LP] Elfsight-onVisible: visibilityState=' + document.visibilityState + ', t=' + Math.round(performance.now()) + 'ms');
           if (document.visibilityState !== 'visible') return;
           document.removeEventListener('visibilitychange', onVisible);
           injectScript();
@@ -61,10 +64,12 @@ export default function WhatYouGetSection({ onScrollToForm }: Props) {
     };
 
     const observer = new IntersectionObserver(([entry]) => {
+      console.log('[LP] Elfsight-observer: callback fired, isIntersecting=' + entry.isIntersecting + ', visibilityState=' + document.visibilityState + ', t=' + Math.round(performance.now()) + 'ms');
       if (!entry.isIntersecting) return;
       observer.disconnect();
       loadWhenVisible();
     }, { rootMargin: '200px' });
+    console.log('[LP] Elfsight-observer: observing element');
     observer.observe(el);
     return () => observer.disconnect();
   }, []);

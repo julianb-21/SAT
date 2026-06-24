@@ -148,32 +148,41 @@ export default function GameplanSection({ onScrollToForm }: Props) {
 
   useEffect(() => {
     const el = sectionRef.current;
+    console.log('[LP] Scrolled60-observer: useEffect running, el=' + (el ? 'found' : 'null') + ', visibilityState=' + document.visibilityState);
     if (!el) return;
 
-    const fireScrolled60 = () => window.fbq?.('trackCustom', 'Scrolled60');
+    const fireScrolled60 = () => {
+      console.log('[LP] Scrolled60: firing, window.fbq type=' + typeof window.fbq + ', fbq.queue=' + JSON.stringify((window.fbq as unknown as {queue?: unknown[]})?.queue));
+      window.fbq?.('trackCustom', 'Scrolled60');
+      console.log('[LP] Scrolled60: fbq call completed');
+    };
 
     const observer = new IntersectionObserver(([entry]) => {
+      console.log('[LP] Scrolled60-observer: callback fired, isIntersecting=' + entry.isIntersecting + ', visibilityState=' + document.visibilityState + ', t=' + Math.round(performance.now()) + 'ms');
       if (!entry.isIntersecting) return;
       observer.disconnect();
-      // If the page is hidden (Instagram/Facebook IAB fires visibilitychange:hidden
-      // ~1s after load), defer the event until the page is visible again.
-      // fbq has queue support so the call won't be lost regardless, but the
-      // element might scroll out of view while hidden, making the event misleading.
       if (document.visibilityState === 'visible') {
+        console.log('[LP] Scrolled60: page visible, firing immediately');
         fireScrolled60();
       } else {
+        console.log('[LP] Scrolled60: page hidden, queuing until visibilitychange');
         const onVisible = () => {
+          console.log('[LP] Scrolled60-onVisible: visibilityState=' + document.visibilityState + ', t=' + Math.round(performance.now()) + 'ms');
           if (document.visibilityState !== 'visible') return;
           document.removeEventListener('visibilitychange', onVisible);
-          // Only fire if the element is still in the viewport when we return
           const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight && rect.bottom > 0) {
+          const inView = rect.top < window.innerHeight && rect.bottom > 0;
+          console.log('[LP] Scrolled60-onVisible: element still in view=' + inView + ', rect.top=' + Math.round(rect.top) + ', innerHeight=' + window.innerHeight);
+          if (inView) {
             fireScrolled60();
+          } else {
+            console.log('[LP] Scrolled60-onVisible: element no longer in view, NOT firing');
           }
         };
         document.addEventListener('visibilitychange', onVisible);
       }
     }, { threshold: 0.1 });
+    console.log('[LP] Scrolled60-observer: observing element');
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
