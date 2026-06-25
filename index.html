@@ -2,6 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Absolute first executable JS — fires before any other script, import, or React mount.
+         If this log never appears in a Clarity session it means JS itself is blocked/never parsed. -->
+    <script>console.log('[LP] SCRIPT_START t=0 vis=' + document.visibilityState + ' ua=' + navigator.userAgent.slice(0,80));</script>
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DMV Parents SAT Landing Page</title>
