@@ -11,7 +11,7 @@ const CARDS = [
     emoji: '🎯',
     title: 'One-on-One Coaching',
     body: "Every study session is just your student 1-on-1 with an instructor. We don't do group pacing or generic lesson plans because we understand that every student learns differently. Your child's curriculum will evolve in real time based on what they need to work on as they progress. By the end of coaching, your student will be so well-prepared for the SAT, that there will be hardly any stress on test day.",
-    tag: 'BUILD THE PLAN',
+    tag: 'WATCH THEM GROW',
   },
   {
     emoji: '🧠',
