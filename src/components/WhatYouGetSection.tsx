@@ -10,7 +10,7 @@ const CARDS = [
   {
     emoji: '🎯',
     title: 'One-on-One Coaching',
-    body: "A strong SAT score is one of the few things your student can control. We align the program with your student's target schools and score thresholds so every session moves them closer to merit-based aid and competitive admissions outcomes.",
+    body: "Every study session is just your student 1-on-1 with an instructor. We don't do group pacing or generic lesson plans because we understand that every student learns differently. Your child's curriculum will evolve in real time based on what they need to work on as they progress. By the end of coaching, your student will be so well-prepared for the SAT, that there will be hardly any stress on test day.",
     tag: 'BUILD THE PLAN',
   },
   {
