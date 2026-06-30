@@ -16,7 +16,7 @@ const CARDS = [
   {
     emoji: '🧠',
     title: 'Long-Term Mastery',
-    body: 'Our students who follow their personalized SAT plan average a 220-point improvement. We accomplish this by identifying exactly where your student is struggling and providing them a personalized curriculum that targets their problem areas.',
+    body: "The SAT isn't a test you cram for — it's a skillset you master over time. At Langley Prep, our programs run 5 to 12 months, which gives your student ample time to build real mastery, not surface-level understanding. More time means more reps, deeper retention, and the kind of confidence that only comes from having genuinely done the work.",
     tag: 'SEE IT IN ACTION',
   },
 ];
