@@ -2,20 +2,20 @@ import { useEffect, useRef } from 'react';
 
 const CARDS = [
   {
-    emoji: '🎓',
-    title: 'Free SAT Mini Course',
-    body: 'A concise, structured introduction to the SAT that shows your student exactly how the test is designed, which sections matter most, and where points are most often lost. This mini course helps students take a focused approach to prep, and show up on test day feeling confident and ready.',
-    tag: 'INSTANT ACCESS',
+    emoji: '📚',
+    title: 'Personalized Curriculum',
+    body: "At Langley Prep, every student's curriculum is built specifically for them. We pinpoint exactly which questions, concepts, and test habits are costing your student the most points, then build the curriculum around their specific challenges, learning style, and target score. This approach helps students find their ideal learning style and test strategy so they can show up on test day feeling confident and ready.",
+    tag: 'BUILT FOR THEM',
   },
   {
-    emoji: '🏆',
-    title: 'Scholarship and Merit Score Targets',
+    emoji: '🎯',
+    title: 'One-on-One Coaching',
     body: "A strong SAT score is one of the few things your student can control. We align the program with your student's target schools and score thresholds so every session moves them closer to merit-based aid and competitive admissions outcomes.",
     tag: 'BUILD THE PLAN',
   },
   {
     emoji: '🧠',
-    title: 'Guaranteed Improvement',
+    title: 'Long-Term Mastery',
     body: 'Our students who follow their personalized SAT plan average a 220-point improvement. We accomplish this by identifying exactly where your student is struggling and providing them a personalized curriculum that targets their problem areas.',
     tag: 'SEE IT IN ACTION',
   },
